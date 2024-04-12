@@ -28,6 +28,9 @@ public class CharacterManager : MonoBehaviour
         
     }
 
+    /*
+     * Properly centers the playable character on the tile grid
+     */
     public void SetSpawnPoint(GameObject character)
     {
         baseTile = GameObject.FindWithTag("Map").transform.Find("BaseTile").gameObject.GetComponent<Transform>();
