@@ -34,7 +34,7 @@ public class CharacterManager : MonoBehaviour
     public void SetSpawnPoint(GameObject character)
     {
         baseTile = GameObject.FindWithTag("Map").transform.Find("BaseTile").gameObject.GetComponent<Transform>();
-        character.transform.position = new Vector3(baseTile.transform.position.x, baseTile.transform.position.y + 6,
+        character.transform.position = new Vector3(baseTile.transform.position.x, baseTile.transform.position.y + 7,
             baseTile.transform.position.z);
     }
 

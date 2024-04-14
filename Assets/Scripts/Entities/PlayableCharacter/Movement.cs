@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
          */
         if (transform.position == destination)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
                 attemptedMove = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKey(KeyCode.S))
             {
                 attemptedMove = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
                 attemptedMove = new Vector3(transform.position.x - 10, transform.position.y, transform.position.z);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -60,7 +60,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 attemptedMove = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
                 if (IsAttemptedMoveValid(attemptedMove))

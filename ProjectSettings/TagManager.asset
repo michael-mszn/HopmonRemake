@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Map
   - Tile
+  - Wall
   layers:
   - Default
   - TransparentFX
