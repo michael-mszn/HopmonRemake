@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Util;
 
 public class Movement : MonoBehaviour
 {
@@ -75,11 +76,14 @@ public class Movement : MonoBehaviour
     {
         foreach(GameObject tile in LevelManager.AllTiles)
         {
-            if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMoveCoordinates.x) && 
-                Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMoveCoordinates.z) && tile.tag != "DeactivatedTile")
+            foreach (string blacklistedTile in Enum.GetNames(typeof(TilesToIgnore)))
             {
-                //print("Moving to tile: X = " + Math.Floor(tile.transform.position.x) + " | z = " + Math.Floor(tile.transform.position.z));
-                return true;
+                if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMoveCoordinates.x) && 
+                    Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMoveCoordinates.z) && !tile.tag.Equals(blacklistedTile))
+                {
+                    //print("Moving to tile: X = " + Math.Floor(tile.transform.position.x) + " | z = " + Math.Floor(tile.transform.position.z));
+                    return true;
+                }
             }
         }
         
