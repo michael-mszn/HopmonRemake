@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    private List<GameObject> allTiles = new();
+    public static List<GameObject> AllTiles = new();
     
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateTileCoordinates();
     }
 
     // Update is called once per frame
@@ -26,26 +26,19 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    public void LoadTileCoordinates()
+    public void UpdateTileCoordinates()
     {
         GameObject map = GameObject.FindWithTag("Map");
         foreach (Transform child in map.transform)
         {
-            if (child.tag == "Tile")
+            /*
+             * All objects that can be walked on have a tag that contains the word "Tile".
+             */
+            if (child.tag.Contains("Tile"))
             {
-                allTiles.Add(child.gameObject);
+                AllTiles.Add(child.gameObject);
                 print("Added Tile");
             }
         }
-    }
-
-    public List<GameObject> getAllTiles()
-    {
-        if (!allTiles.Any())
-        {
-            LoadTileCoordinates();
-        }
-        
-        return allTiles;
     }
 }

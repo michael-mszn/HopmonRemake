@@ -7,6 +7,9 @@ TagManager:
   - Map
   - Tile
   - Wall
+  - ActivatedTile
+  - DeactivatedTile
+  - Character
   layers:
   - Default
   - TransparentFX
