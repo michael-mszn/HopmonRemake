@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 999025910776346561}
   - component: {fileID: 7365324826010319151}
   - component: {fileID: -7483468033543022261}
+  - component: {fileID: -967740054151489093}
   m_Layer: 0
   m_Name: OrangeSwitchTile
   m_TagString: Untagged
@@ -147,4 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchColor: 1
-  rend: {fileID: 398225478879561224}
+--- !u!114 &-967740054151489093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355883380468937124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5da1b2ebb4c64b4e8f00ffa4133f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passenger: {fileID: 0}

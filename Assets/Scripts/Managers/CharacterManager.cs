@@ -7,8 +7,14 @@ public class CharacterManager : MonoBehaviour
 {
 
     public static CharacterManager Instance;
-    public float speed;
+    public float maximumSpeed;
+    [Range(0, 1)]
+    public float lowestSpeedPercentage;
+    public int hp;
+    public int crystalCarried;
+    public float currentSpeed;
     private Transform baseTile;
+    private float lowestSpeedLimit;
 
     private void Awake()
     {
@@ -19,7 +25,10 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        lowestSpeedLimit = maximumSpeed * lowestSpeedPercentage;
+        currentSpeed = maximumSpeed;
+        hp = 2;
+        crystalCarried = 0;
     }
 
     // Update is called once per frame
@@ -38,8 +47,34 @@ public class CharacterManager : MonoBehaviour
             baseTile.transform.position.z);
     }
 
-    public float getSpeed()
+    public float GetCurrentSpeed()
     {
-        return speed;
+        return currentSpeed;
     }
+
+    public void AddCrystal()
+    {
+        crystalCarried += 1;
+        if (currentSpeed >= lowestSpeedLimit)
+        {
+            currentSpeed -= maximumSpeed*0.1f;
+        }
+    }
+
+    public void SecureCrystal()
+    {
+        while (crystalCarried != 0)
+        {
+            crystalCarried -= 1;
+            currentSpeed += maximumSpeed*0.1f;
+            LevelManager.Instance.crystalsLeft -= 1;
+        }
+
+        if (LevelManager.Instance.crystalsLeft == 0)
+        {
+            //TODO: Proper transition to next level
+            print("Level solved!");
+        }
+    }
+    
 }

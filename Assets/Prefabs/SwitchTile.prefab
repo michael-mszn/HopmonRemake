@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1082873092452352588}
   - component: {fileID: 1004649983429329944}
   - component: {fileID: 394010798394386428}
+  - component: {fileID: -460925430066752566}
   m_Layer: 0
   m_Name: SwitchTile
   m_TagString: Tile
@@ -146,3 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffd8c46a7fc1874eb5878f9650ae1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-460925430066752566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061878438659631371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5da1b2ebb4c64b4e8f00ffa4133f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passenger: {fileID: 0}

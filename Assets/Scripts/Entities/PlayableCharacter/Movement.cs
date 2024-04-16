@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination,  characterManager.getSpeed() * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination,  characterManager.GetCurrentSpeed() * Time.deltaTime);
         }
     }
 

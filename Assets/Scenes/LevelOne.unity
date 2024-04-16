@@ -412,6 +412,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1446992088230379831, guid: 20b463648f593f741a61e33d18976bd3, type: 3}
   m_PrefabInstance: {fileID: 403433471}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &434928841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434928843}
+  - component: {fileID: 434928842}
+  m_Layer: 0
+  m_Name: PassengerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &434928842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434928841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4311cebf341b5c44db9b2e35d482fac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystal:
+    prefab: {fileID: 2331043459988363468, guid: fba3f6cf07f67994aa18e1605fad0d7f, type: 3}
+    yOffset: 8
+--- !u!4 &434928843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434928841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.462302, y: 6.869074, z: -9.005232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &485382549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71555ad5dcb28f74b9c5cfe472dc2948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystalsInLevel: 0
+  crystalsLeft: 0
 --- !u!1001 &660031879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1030,7 +1079,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4812bb192e655234a81791ccc47a8030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  maximumSpeed: 25
+  lowestSpeedPercentage: 0.3
+  hp: 0
+  crystalCarried: 0
+  currentSpeed: 0
 --- !u!4 &901392718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3823099647228163947, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
@@ -1590,6 +1643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 762394686}
     m_Modifications:
+    - target: {fileID: -8843244608415782073, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
+      propertyPath: passenger
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3823099647228163947, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -1845,6 +1902,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 762394686}
     m_Modifications:
+    - target: {fileID: -8843244608415782073, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
+      propertyPath: passenger
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3823099647228163947, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -2400,6 +2461,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2901535818779481532, guid: 20b463648f593f741a61e33d18976bd3, type: 3}
+      propertyPath: passenger
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4806085440264854009, guid: 20b463648f593f741a61e33d18976bd3, type: 3}
       propertyPath: m_Name
       value: OneWayTile
@@ -2420,3 +2485,4 @@ SceneRoots:
   - {fileID: 188787340}
   - {fileID: 899735806}
   - {fileID: 651330104}
+  - {fileID: 434928843}

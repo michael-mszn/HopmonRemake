@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8830855343016982660}
   - component: {fileID: 3872866350497190499}
   - component: {fileID: 4461083231312239537}
+  - component: {fileID: -1346277524706306720}
   m_Layer: 0
   m_Name: FloorTile
   m_TagString: Tile
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-1346277524706306720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665486517013058024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5da1b2ebb4c64b4e8f00ffa4133f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passenger: {fileID: 0}

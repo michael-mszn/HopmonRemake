@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1479721805271982685}
   - component: {fileID: 7564542612952780604}
   - component: {fileID: 6428757162730273253}
+  - component: {fileID: 2901535818779481532}
   m_Layer: 0
   m_Name: OneWayTile
   m_TagString: Tile
@@ -99,6 +100,19 @@ MonoBehaviour:
   lowerBlock: {fileID: 3002906005002742167}
   upperBlock: {fileID: 809584853996458466}
   fallSpeed: 35
+--- !u!114 &2901535818779481532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806085440264854009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5da1b2ebb4c64b4e8f00ffa4133f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passenger: {fileID: 0}
 --- !u!1001 &144239796831567882
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6361055549213834461}
   - component: {fileID: 7053012580482053151}
   - component: {fileID: 3444042307329277707}
+  - component: {fileID: 21365111742310281}
+  - component: {fileID: 143973591120807170}
   m_Layer: 0
   m_Name: BaseTile
   m_TagString: Tile
@@ -133,3 +135,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &21365111742310281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002997231758394380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71667493edaf6444195dcbff072b51df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &143973591120807170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002997231758394380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5da1b2ebb4c64b4e8f00ffa4133f4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passenger: {fileID: 0}

@@ -1,12 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     public static List<GameObject> AllTiles = new();
+    public int crystalsInLevel;
+    public int crystalsLeft;
     
     private void Awake()
     {
@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         UpdateTileCoordinates();
+        CountCrystalsInLevel();
+        crystalsLeft = crystalsInLevel;
     }
 
     // Update is called once per frame
@@ -41,4 +43,17 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
+    public void CountCrystalsInLevel()
+    {
+        GameObject map = GameObject.FindWithTag("Map");
+        foreach (Transform child in map.transform)
+        {
+            if (child.tag.Contains("Crystal"))
+            {
+                crystalsInLevel += 1;
+            }
+        }
+    }
+    
 }
