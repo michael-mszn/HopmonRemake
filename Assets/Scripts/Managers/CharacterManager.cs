@@ -10,11 +10,11 @@ public class CharacterManager : MonoBehaviour
     public float maximumSpeed;
     [Range(0, 1)]
     public float lowestSpeedPercentage;
-    public int hp;
-    public int crystalCarried;
-    public float currentSpeed;
+    private float currentSpeed;
     private Transform baseTile;
     private float lowestSpeedLimit;
+    private int hp;
+    private int crystalCarried;
 
     private void Awake()
     {
@@ -29,6 +29,7 @@ public class CharacterManager : MonoBehaviour
         currentSpeed = maximumSpeed;
         hp = 2;
         crystalCarried = 0;
+        UIManager.Instance.InitializeUI();
     }
 
     // Update is called once per frame
@@ -46,19 +47,21 @@ public class CharacterManager : MonoBehaviour
         character.transform.position = new Vector3(baseTile.transform.position.x, baseTile.transform.position.y + 7,
             baseTile.transform.position.z);
     }
-
-    public float GetCurrentSpeed()
-    {
-        return currentSpeed;
-    }
-
+    
     public void AddCrystal()
     {
         crystalCarried += 1;
+        UIManager.Instance.UpdateCrystalCarriedText();
         if (currentSpeed >= lowestSpeedLimit)
         {
             currentSpeed -= maximumSpeed*0.1f;
         }
+    }
+
+    public void IncreaseHP()
+    {
+        hp += 1;
+        UIManager.Instance.UpdateHpText();
     }
 
     public void SecureCrystal()
@@ -67,14 +70,31 @@ public class CharacterManager : MonoBehaviour
         {
             crystalCarried -= 1;
             currentSpeed += maximumSpeed*0.1f;
-            LevelManager.Instance.crystalsLeft -= 1;
+            LevelManager.Instance.DecrementCrystalsLeft();
+            UIManager.Instance.UpdateCrystalCarriedText();
+            UIManager.Instance.UpdateCrystalsLeftText();
         }
 
-        if (LevelManager.Instance.crystalsLeft == 0)
+        if (LevelManager.Instance.GetCrystalsLeft() == 0)
         {
             //TODO: Proper transition to next level
             print("Level solved!");
         }
     }
     
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
+
+    public int GetHp()
+    {
+        return hp;
+    }
+    
+    public int GetCrystalCarried()
+    {
+        return crystalCarried;
+    }
+
 }

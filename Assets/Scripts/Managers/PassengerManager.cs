@@ -7,6 +7,7 @@ public class PassengerManager : MonoBehaviour
     public static PassengerManager Instance;
     
     public Passenger crystal;
+    public Passenger bonusHeart;
     
     private void Awake()
     {
@@ -29,6 +30,13 @@ public class PassengerManager : MonoBehaviour
     {
         GameObject passenger = Instantiate(crystal.prefab, tile.transform.position, Quaternion.identity);
         PositionPassengerOnTile(tile, passenger, crystal.yOffset);
+        return passenger;
+    }
+    
+    public GameObject SetPassengerBonusHeart(GameObject tile)
+    {
+        GameObject passenger = Instantiate(bonusHeart.prefab, tile.transform.position, bonusHeart.prefab.transform.rotation);
+        PositionPassengerOnTile(tile, passenger, bonusHeart.yOffset);
         return passenger;
     }
     

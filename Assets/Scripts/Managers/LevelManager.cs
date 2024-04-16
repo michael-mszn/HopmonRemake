@@ -5,8 +5,8 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     public static List<GameObject> AllTiles = new();
-    public int crystalsInLevel;
-    public int crystalsLeft;
+    private int crystalsInLevel;
+    private int crystalsLeft;
     
     private void Awake()
     {
@@ -55,5 +55,19 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
-    
+
+    public int GetCrystalsInLevel()
+    {
+        return crystalsInLevel;
+    }
+
+    public int GetCrystalsLeft()
+    {
+        return crystalsLeft;
+    }
+
+    public void DecrementCrystalsLeft()
+    {
+        crystalsLeft -= 1;
+    }
 }
