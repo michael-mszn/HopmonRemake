@@ -40,6 +40,9 @@ public class PassengerManager : MonoBehaviour
         return passenger;
     }
     
+    /*
+     *  Aligns the passenger on the tile-grid 
+     */
     public void PositionPassengerOnTile(GameObject tile, GameObject passenger, int yOffset)
     {
         passenger.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + yOffset,

@@ -8,7 +8,7 @@ using Util;
 public class Movement : MonoBehaviour
 {
     private CharacterManager characterManager;
-
+    private bool canRotate = true;
     private Vector3 destination;
     private Vector3 attemptedMove;
     
@@ -30,12 +30,18 @@ public class Movement : MonoBehaviour
          */
         if (transform.position == destination)
         {
+            if (!canRotate)
+            {
+                canRotate = true;
+            }
+            
             if (Input.GetKey(KeyCode.W))
             {
                 attemptedMove = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10);
                 if (IsAttemptedMoveValid(attemptedMove))
                 {
                     destination = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
             }
 
@@ -45,6 +51,7 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 { 
                     destination = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
             }
 
@@ -54,6 +61,7 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 {
                     destination = new Vector3(transform.position.x - 10, transform.position.y, transform.position.z);
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
                 }
             }
 
@@ -63,11 +71,13 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 {
                     destination = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
+                    transform.rotation = Quaternion.Euler(0, -90, 0);
                 }
             }
         }
         else
         {
+            canRotate = false;
             transform.position = Vector3.MoveTowards(transform.position, destination,  characterManager.GetCurrentSpeed() * Time.deltaTime);
         }
     }
@@ -87,8 +97,12 @@ public class Movement : MonoBehaviour
             }
         }
         
-        //print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
+        print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
         return false;
     }
-    
+
+    public bool GetCanRotate()
+    {
+        return canRotate;
+    }
 }
