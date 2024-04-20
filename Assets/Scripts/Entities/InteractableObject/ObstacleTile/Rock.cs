@@ -16,11 +16,12 @@ public class Rock : MonoBehaviour
         
     }
     
-    public void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision entity)
     {
-        if (collision.gameObject.tag.Equals("Character"))
+        if (entity.gameObject.tag.Equals("EnergyBall"))
         {
             gameObject.transform.parent.gameObject.GetComponent<ObstacleTile>().DestroyObstacle();
+            entity.gameObject.SetActive(false);
         }
     }
 }

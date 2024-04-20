@@ -18,7 +18,7 @@ public class ObstacleTile : MonoBehaviour
     {
         
     }
-
+    
     public void DestroyObstacle()
     {
         gameObject.tag = "Tile";

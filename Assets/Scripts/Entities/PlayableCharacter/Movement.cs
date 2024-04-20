@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 {
                     destination = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10);
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
             }
 
@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 { 
                     destination = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
             }
 
@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 {
                     destination = new Vector3(transform.position.x - 10, transform.position.y, transform.position.z);
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                    transform.rotation = Quaternion.Euler(0, -90, 0);
                 }
             }
 
@@ -71,7 +71,7 @@ public class Movement : MonoBehaviour
                 if (IsAttemptedMoveValid(attemptedMove))
                 {
                     destination = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
-                    transform.rotation = Quaternion.Euler(0, -90, 0);
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
                 }
             }
         }
@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour
             }
         }
         
-        print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
+        //print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
         return false;
     }
 

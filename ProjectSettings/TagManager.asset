@@ -11,6 +11,8 @@ TagManager:
   - DeactivatedTile
   - Character
   - Crystal
+  - EnergyBall
+  - Obstacle
   layers:
   - Default
   - TransparentFX
