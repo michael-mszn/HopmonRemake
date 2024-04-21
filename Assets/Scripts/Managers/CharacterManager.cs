@@ -32,12 +32,6 @@ public class CharacterManager : MonoBehaviour
         UIManager.Instance.InitializeUI();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     /*
      * Properly centers the playable character on the tile grid
      */

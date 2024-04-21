@@ -12,12 +12,6 @@ public class ObstacleTile : MonoBehaviour
     {
         gameObject.tag = "Wall";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     public void DestroyObstacle()
     {

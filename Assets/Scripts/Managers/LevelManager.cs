@@ -22,12 +22,6 @@ public class LevelManager : MonoBehaviour
         crystalsLeft = crystalsInLevel;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateTileCoordinates()
     {
         GameObject map = GameObject.FindWithTag("Map");

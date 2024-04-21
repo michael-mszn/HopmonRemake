@@ -10,13 +10,7 @@ public class Crystal : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void OnCollisionEnter(Collision entity)
     {
         if (entity.gameObject.tag.Equals("Character"))

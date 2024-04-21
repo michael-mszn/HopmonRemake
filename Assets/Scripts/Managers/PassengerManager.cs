@@ -19,13 +19,7 @@ public class PassengerManager : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public GameObject SetPassengerCrystal(GameObject tile)
     {
         GameObject passenger = Instantiate(crystal.prefab, tile.transform.position, Quaternion.identity);

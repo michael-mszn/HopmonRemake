@@ -110,7 +110,7 @@ public class Movement : MonoBehaviour
             }
         }
         
-        print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
+        //print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
         return false;
     }
 
@@ -153,9 +153,6 @@ public class Movement : MonoBehaviour
             rightKeyCode = KeyCode.W;
         }
     }
-
-    //private delegate TForward Func<in T, out TForward>(T arg);
-    
 
     public bool GetCanRotate()
     {

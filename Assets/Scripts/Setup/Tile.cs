@@ -27,11 +27,5 @@ public class Tile : MonoBehaviour
         }
         passenger.transform.parent = map.transform;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
 }

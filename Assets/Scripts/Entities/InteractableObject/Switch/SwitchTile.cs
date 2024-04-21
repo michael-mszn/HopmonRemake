@@ -26,11 +26,6 @@ public class SwitchTile : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-    
     public void RenderOpacitySwitch(float opacity)
     {
         Color currentColor = _material.color;
