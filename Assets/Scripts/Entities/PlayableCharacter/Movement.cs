@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Util;
 
 public class Movement : MonoBehaviour
@@ -11,6 +10,13 @@ public class Movement : MonoBehaviour
     private bool canRotate = true;
     private Vector3 destination;
     private Vector3 attemptedMove;
+    private bool isCameraMoving;
+    private Camera _camera;
+
+    private KeyCode forwardKeyCode;
+    private KeyCode backKeyCode;
+    private KeyCode leftKeyCode;
+    private KeyCode rightKeyCode;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +24,13 @@ public class Movement : MonoBehaviour
         characterManager = CharacterManager.Instance;
         characterManager.SetSpawnPoint(gameObject);
         destination = transform.position;
+        isCameraMoving = false;
+        _camera = Camera.main;
+
+        forwardKeyCode = KeyCode.W;
+        backKeyCode = KeyCode.S;
+        leftKeyCode = KeyCode.A;
+        rightKeyCode = KeyCode.D;
     }
 
     // Update is called once per frame
@@ -28,14 +41,14 @@ public class Movement : MonoBehaviour
          * Tile based movement. Valid Movement Check is done by scanning all tile coordinates.
          * Not using collision detection or wall objects ensures ease of use in level design and better scalability
          */
-        if (transform.position == destination)
+        if (GetIsStandingStill() && !isCameraMoving)
         {
             if (!canRotate)
             {
                 canRotate = true;
             }
             
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(forwardKeyCode))
             {
                 attemptedMove = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -45,7 +58,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(backKeyCode))
             {
                 attemptedMove = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -55,7 +68,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(leftKeyCode))
             {
                 attemptedMove = new Vector3(transform.position.x - 10, transform.position.y, transform.position.z);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -65,7 +78,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(rightKeyCode))
             {
                 attemptedMove = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
                 if (IsAttemptedMoveValid(attemptedMove))
@@ -75,7 +88,7 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else
+        else if(!isCameraMoving)
         {
             canRotate = false;
             transform.position = Vector3.MoveTowards(transform.position, destination,  characterManager.GetCurrentSpeed() * Time.deltaTime);
@@ -97,12 +110,65 @@ public class Movement : MonoBehaviour
             }
         }
         
-        //print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
+        print("Invalid destination: x = " + Math.Floor(attemptedMoveCoordinates.x) + " | z = " + Math.Floor(attemptedMoveCoordinates.z));
         return false;
     }
+
+    /*
+     * What is understood as "forward", "back", "left", "right" changes when the camera view
+     * gets rotated. Therefore, the interpretation of a keystroke has to update every single time
+     * the camera is rotated so WASD-movement is according to expectations regardless of camera view.
+     */
+    public void AssignKeys()
+    {
+        if (Math.Round(_camera.transform.forward.z) == 1)
+        {
+            forwardKeyCode = KeyCode.W;
+            backKeyCode = KeyCode.S;
+            leftKeyCode = KeyCode.A;
+            rightKeyCode = KeyCode.D;
+        }
+        
+        if (Math.Round(_camera.transform.forward.z) == -1)
+        {
+            forwardKeyCode = KeyCode.S;
+            backKeyCode = KeyCode.W;
+            leftKeyCode = KeyCode.D;
+            rightKeyCode = KeyCode.A;
+        }
+        
+        if (Math.Round(_camera.transform.forward.x) == -1)
+        {
+            forwardKeyCode = KeyCode.D;
+            backKeyCode = KeyCode.A;
+            leftKeyCode = KeyCode.W;
+            rightKeyCode = KeyCode.S;
+        }
+        
+        if (Math.Round(_camera.transform.forward.x) == 1)
+        {
+            forwardKeyCode = KeyCode.A;
+            backKeyCode = KeyCode.D;
+            leftKeyCode = KeyCode.S;
+            rightKeyCode = KeyCode.W;
+        }
+    }
+
+    //private delegate TForward Func<in T, out TForward>(T arg);
+    
 
     public bool GetCanRotate()
     {
         return canRotate;
+    }
+
+    public bool GetIsStandingStill()
+    {
+        return transform.position == destination;
+    }
+
+    public void SetIsCameraMoving(bool v)
+    {
+        isCameraMoving = v;
     }
 }
