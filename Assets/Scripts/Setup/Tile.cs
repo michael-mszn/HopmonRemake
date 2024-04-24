@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
         GameObject map = GameObject.FindWithTag("Map");
         
         //todo: this is just for test cases and will be replaced with a dynamic passenger-setter
-        if (UnityEngine.Random.Range(0f, 1.0f) <= 0.33f)
+        if (UnityEngine.Random.Range(0f, 1.0f) <= 0.28f)
         {
             passenger = PassengerManager.Instance.SetPassengerCrystal(gameObject);
         }
@@ -25,6 +25,11 @@ public class Tile : MonoBehaviour
         {
             passenger = PassengerManager.Instance.SetPassengerBonusHeart(gameObject);
         }
+        else if (UnityEngine.Random.Range(0f, 1.0f) > 0.28f && UnityEngine.Random.Range(0f, 1.0f) <= 0.33f)
+        {
+            passenger = PassengerManager.Instance.SetPassengerBird(gameObject);
+        }
+        
         passenger.transform.parent = map.transform;
     }
     

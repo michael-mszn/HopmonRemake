@@ -6,6 +6,7 @@ using UnityEngine;
 public class SwitchButton : MonoBehaviour
 {
 
+    public static event Action Switch;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class SwitchButton : MonoBehaviour
                     tile.GetComponent<SwitchTile>().RenderOpacitySwitch(1.0f);
                 }
             }
-
+            Switch?.Invoke();
             print("Triggered Switch Tile");
         }
     }

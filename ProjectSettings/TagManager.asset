@@ -13,6 +13,9 @@ TagManager:
   - Crystal
   - Obstacle
   - EnergyBall
+  - SwitchTile
+  - OneWayTile
+  - Monster
   layers:
   - Default
   - TransparentFX

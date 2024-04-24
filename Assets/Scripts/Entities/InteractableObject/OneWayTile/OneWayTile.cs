@@ -7,12 +7,10 @@ public class OneWayTile : MonoBehaviour
 {
     public GameObject lowerBlock;
     public GameObject upperBlock;
-
     public float fallSpeed;
     
     private Vector3 fallPosition;
     private bool hasLeftTile;
-
     private bool hasFinishedCollapsing;
     // Start is called before the first frame update
     void Start()

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2901535818779481532}
   m_Layer: 0
   m_Name: OneWayTile
-  m_TagString: Tile
+  m_TagString: OneWayTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

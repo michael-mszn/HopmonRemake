@@ -33,7 +33,6 @@ public class LevelManager : MonoBehaviour
             if (child.tag.Contains("Tile"))
             {
                 AllTiles.Add(child.gameObject);
-                print("Added Tile");
             }
         }
     }

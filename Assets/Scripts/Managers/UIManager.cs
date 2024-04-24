@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
 
     /*
      * This can not be done in the Start() function of the UIManager due to a race condition,
-     * so it needs to be invoked in the ChracterManager Start() function after all values have been
+     * so it needs to be invoked in the CharacterManager Start() function after all values have been
      * initialized.
      */
     public void InitializeUI()

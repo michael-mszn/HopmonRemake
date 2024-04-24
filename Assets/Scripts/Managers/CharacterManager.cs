@@ -10,7 +10,9 @@ public class CharacterManager : MonoBehaviour
     public float maximumSpeed;
     [Range(0, 1)]
     public float lowestSpeedPercentage;
+    public float invulnerabilitySeconds;
     private float currentSpeed;
+    private float invulnerabilityTimer;
     private Transform baseTile;
     private float lowestSpeedLimit;
     private int hp;
@@ -21,6 +23,14 @@ public class CharacterManager : MonoBehaviour
         Instance = this;
     }
 
+    void Update()
+    {
+        if (invulnerabilityTimer > 0)
+        {
+            invulnerabilityTimer -= Time.deltaTime;
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +39,7 @@ public class CharacterManager : MonoBehaviour
         currentSpeed = maximumSpeed;
         hp = 2;
         crystalCarried = 0;
+        invulnerabilityTimer = 0;
         UIManager.Instance.InitializeUI();
     }
 
@@ -91,4 +102,21 @@ public class CharacterManager : MonoBehaviour
         return crystalCarried;
     }
 
+    public void TakeDamage()
+    {
+        if (invulnerabilityTimer <= 0)
+        {
+            if (hp == 0)
+            {
+                //Game over 
+            }
+            else
+            {
+                hp -= 1;
+                invulnerabilityTimer = invulnerabilitySeconds;
+                UIManager.Instance.UpdateHpText();
+            }
+        }
+    }
+    
 }

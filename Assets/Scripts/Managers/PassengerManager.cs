@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Entities.Monster.AI;
 using UnityEngine;
 
 public class PassengerManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class PassengerManager : MonoBehaviour
     
     public Passenger crystal;
     public Passenger bonusHeart;
+    public Passenger bird;
     
     private void Awake()
     {
@@ -31,6 +33,13 @@ public class PassengerManager : MonoBehaviour
     {
         GameObject passenger = Instantiate(bonusHeart.prefab, tile.transform.position, bonusHeart.prefab.transform.rotation);
         PositionPassengerOnTile(tile, passenger, bonusHeart.yOffset);
+        return passenger;
+    }
+    
+    public GameObject SetPassengerBird(GameObject tile)
+    {
+        GameObject passenger = Instantiate(bird.prefab, tile.transform.position, Quaternion.identity);
+        PositionPassengerOnTile(tile, passenger, bird.yOffset);
         return passenger;
     }
     
