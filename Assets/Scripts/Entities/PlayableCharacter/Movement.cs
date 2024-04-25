@@ -6,7 +6,6 @@ using Util;
 
 public class Movement : MonoBehaviour
 {
-    private CharacterManager characterManager;
     private bool canRotate = true;
     private Vector3 destination;
     private Vector3 attemptedMove;
@@ -21,8 +20,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterManager = CharacterManager.Instance;
-        characterManager.SetSpawnPoint(gameObject);
+        CharacterManager.Instance.SetSpawnPoint(gameObject);
         destination = transform.position;
         isCameraMoving = false;
         _camera = Camera.main;
@@ -41,7 +39,7 @@ public class Movement : MonoBehaviour
          * Tile based movement. Valid Movement Check is done by scanning all tile coordinates.
          * Not using collision detection or wall objects ensures ease of use in level design and better scalability
          */
-        if (GetIsStandingStill() && !isCameraMoving)
+        if (GetIsStandingStill() && !isCameraMoving && !PauseMenu.isPaused)
         {
             if (!canRotate)
             {
@@ -91,7 +89,7 @@ public class Movement : MonoBehaviour
         else if(!isCameraMoving)
         {
             canRotate = false;
-            transform.position = Vector3.MoveTowards(transform.position, destination,  characterManager.GetCurrentSpeed() * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination,  CharacterManager.Instance.GetCurrentSpeed() * Time.deltaTime);
         }
     }
 

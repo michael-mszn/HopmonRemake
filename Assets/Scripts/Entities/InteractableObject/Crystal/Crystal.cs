@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Crystal : MonoBehaviour
 {
+    public static event Action CrystalSpawn;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        CrystalSpawn?.Invoke();
     }
     
     public void OnCollisionEnter(Collision entity)

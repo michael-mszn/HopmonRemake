@@ -33,7 +33,7 @@ public class FireEnergyBall : MonoBehaviour
             cooldown = 0;
         }
         
-        if (Input.GetKeyDown(KeyCode.R) && cooldown == 0)
+        if (Input.GetKeyDown(KeyCode.R) && cooldown == 0 && !PauseMenu.isPaused)
         {
             Vector3 destination = SetDestination();
             firedEnergyBall.transform.position = characterTransform.position;

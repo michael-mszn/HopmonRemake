@@ -56,11 +56,10 @@ namespace Entities.Monster.AI.FixedPathing
             }
         }
         
-        /*
-         * A monster with FixedPathing AI is not allowed to have more than 2 neighbouring tiles that
-         * correspond with its pathTile.
-         * Additionally, it only travels back if it ran into a dead end.
-         */
+
+         /*
+          * It only travels back if it ran into a dead end.
+          */
         protected override void DetermineDestination()
         {
             //1 Neighbour
@@ -82,7 +81,7 @@ namespace Entities.Monster.AI.FixedPathing
                     destinationTile = rightTile;
                 }
                 
-                if (leftTile is not null)
+                else if (leftTile is not null)
                 {
                     destinationTile = leftTile;
                 }

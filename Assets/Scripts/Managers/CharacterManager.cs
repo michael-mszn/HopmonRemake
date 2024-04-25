@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Setup;
 using UnityEngine;
 
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour, IInitializedFlag
 {
 
     public static CharacterManager Instance;
@@ -19,29 +20,31 @@ public class CharacterManager : MonoBehaviour
     private int hp;
     private int crystalCarried;
 
+    private bool isInitialized;
+
     private void Awake()
     {
-        Instance = this;
+            Instance = this;
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        isInitialized = false;
+        lowestSpeedLimit = maximumSpeed * lowestSpeedPercentage;
+        currentSpeed = maximumSpeed;
+        hp = 2;
+        crystalCarried = 0;
+        invulnerabilityTimer = 0;
+        isInitialized = true;
+    }
+    
     void Update()
     {
         if (invulnerabilityTimer > 0)
         {
             invulnerabilityTimer -= Time.deltaTime;
         }
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        lowestSpeedLimit = maximumSpeed * lowestSpeedPercentage;
-        currentSpeed = maximumSpeed;
-        hp = 2;
-        crystalCarried = 0;
-        invulnerabilityTimer = 0;
-        UIManager.Instance.InitializeUI();
     }
 
     /*
@@ -107,17 +110,22 @@ public class CharacterManager : MonoBehaviour
     {
         if (invulnerabilityTimer <= 0)
         {
+            hp -= 1;
+            UIManager.Instance.UpdateHpText();
             if (hp == 0)
             {
-                //Game over 
+                UIManager.Instance.ShowGameOver();
             }
             else
             {
-                hp -= 1;
                 invulnerabilityTimer = invulnerabilitySeconds;
-                UIManager.Instance.UpdateHpText();
             }
         }
+    }
+
+    public bool IsInitialized()
+    {
+        return isInitialized;
     }
     
 }

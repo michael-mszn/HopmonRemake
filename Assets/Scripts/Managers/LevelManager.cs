@@ -1,28 +1,32 @@
 using System.Collections.Generic;
+using Setup;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour, IInitializedFlag
 {
     public static LevelManager Instance;
-    public static List<GameObject> AllTiles = new();
+    public static List<GameObject> AllTiles;
     private int crystalsInLevel;
     private int crystalsLeft;
+
+    private bool isInitialized;
     
     private void Awake()
     {
         Instance = this;
+        Crystal.CrystalSpawn += OnCrystalSpawn;
     }
-
     
     // Start is called before the first frame update
     void Start()
     {
+        isInitialized = false;
+        AllTiles = new();
         UpdateTileCoordinates("Tile", AllTiles);
-        CountCrystalsInLevel();
-        crystalsLeft = crystalsInLevel;
+        isInitialized = true;
     }
 
-    public void UpdateTileCoordinates(string expression, List<GameObject> tileList)
+    public void UpdateTileCoordinates(string tileTag, List<GameObject> tileList)
     {
         GameObject map = GameObject.FindWithTag("Map");
         foreach (Transform child in map.transform)
@@ -30,23 +34,17 @@ public class LevelManager : MonoBehaviour
             /*
              * All objects that can be walked on have a tag that contains the word "Tile".
              */
-            if (child.tag.Contains(expression))
+            if (child.tag.Contains(tileTag))
             {
                 tileList.Add(child.gameObject);
             }
         }
     }
 
-    public void CountCrystalsInLevel()
+    private void OnCrystalSpawn()
     {
-        GameObject map = GameObject.FindWithTag("Map");
-        foreach (Transform child in map.transform)
-        {
-            if (child.tag.Contains("Crystal"))
-            {
-                crystalsInLevel += 1;
-            }
-        }
+        crystalsInLevel += 1;
+        crystalsLeft += 1;
     }
 
     public int GetCrystalsInLevel()
@@ -62,5 +60,15 @@ public class LevelManager : MonoBehaviour
     public void DecrementCrystalsLeft()
     {
         crystalsLeft -= 1;
+    }
+    
+    public bool IsInitialized()
+    {
+        return isInitialized;
+    }
+    
+    private void OnDestroy()
+    {
+        Crystal.CrystalSpawn -= OnCrystalSpawn;
     }
 }

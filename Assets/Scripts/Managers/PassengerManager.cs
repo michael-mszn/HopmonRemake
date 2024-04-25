@@ -24,6 +24,8 @@ public class PassengerManager : MonoBehaviour
         
     }
     
+    
+    //todo: refactor this to become one method once dynamic map generator was implemented
     public GameObject SetPassengerCrystal(GameObject tile)
     {
         GameObject passenger = Instantiate(crystal.prefab, tile.transform.position, Quaternion.identity);

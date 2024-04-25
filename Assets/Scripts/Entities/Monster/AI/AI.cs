@@ -16,8 +16,8 @@ namespace Entities.Monster.AI
         protected bool isCurrentlyFalling;
         protected GameObject destinationTile;
         protected Vector3 destination;
-        protected Monster monsterScript;
         protected GameObject frontTile, backTile, leftTile, rightTile;
+        private Monster monsterScript;
         
         void Awake()
         {

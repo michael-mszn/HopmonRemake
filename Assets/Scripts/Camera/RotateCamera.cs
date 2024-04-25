@@ -28,7 +28,7 @@ public class RotateCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (characterMovement.GetIsStandingStill() && !isCameraMoving)
+        if (characterMovement.GetIsStandingStill() && !isCameraMoving && !PauseMenu.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {

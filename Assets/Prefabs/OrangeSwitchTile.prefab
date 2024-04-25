@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -967740054151489093}
   m_Layer: 0
   m_Name: OrangeSwitchTile
-  m_TagString: Untagged
+  m_TagString: ActivatedTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

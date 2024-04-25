@@ -22,9 +22,9 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         transform.rotation = Quaternion.Euler(cameraRotation);
-        transform.position = playableCharacter.transform.position + cameraOffset;
         characterRotation = playableCharacter.GetComponent<Movement>();
-        distanceCameraToPlayer = transform.position - playableCharacter.transform.position;
+        transform.position = playableCharacter.transform.position + cameraOffset;
+        distanceCameraToPlayer = cameraOffset;
 
     }
 
