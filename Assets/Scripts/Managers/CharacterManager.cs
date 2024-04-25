@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     [Range(0, 1)]
     public float lowestSpeedPercentage;
     public float invulnerabilitySeconds;
+    public float fireCooldown;
     private float currentSpeed;
     private float invulnerabilityTimer;
     private Transform baseTile;

@@ -17,12 +17,12 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateTileCoordinates();
+        UpdateTileCoordinates("Tile", AllTiles);
         CountCrystalsInLevel();
         crystalsLeft = crystalsInLevel;
     }
 
-    public void UpdateTileCoordinates()
+    public void UpdateTileCoordinates(string expression, List<GameObject> tileList)
     {
         GameObject map = GameObject.FindWithTag("Map");
         foreach (Transform child in map.transform)
@@ -30,9 +30,9 @@ public class LevelManager : MonoBehaviour
             /*
              * All objects that can be walked on have a tag that contains the word "Tile".
              */
-            if (child.tag.Contains("Tile"))
+            if (child.tag.Contains(expression))
             {
-                AllTiles.Add(child.gameObject);
+                tileList.Add(child.gameObject);
             }
         }
     }

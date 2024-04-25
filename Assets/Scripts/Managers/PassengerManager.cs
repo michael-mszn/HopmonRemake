@@ -10,6 +10,8 @@ public class PassengerManager : MonoBehaviour
     public Passenger crystal;
     public Passenger bonusHeart;
     public Passenger bird;
+    public Passenger dragon;
+    public Passenger spike;
     
     private void Awake()
     {
@@ -40,6 +42,20 @@ public class PassengerManager : MonoBehaviour
     {
         GameObject passenger = Instantiate(bird.prefab, tile.transform.position, Quaternion.identity);
         PositionPassengerOnTile(tile, passenger, bird.yOffset);
+        return passenger;
+    }
+    
+    public GameObject SetPassengerDragon(GameObject tile)
+    {
+        GameObject passenger = Instantiate(dragon.prefab, tile.transform.position, Quaternion.identity);
+        PositionPassengerOnTile(tile, passenger, dragon.yOffset);
+        return passenger;
+    }
+    
+    public GameObject SetPassengerSpike(GameObject tile)
+    {
+        GameObject passenger = Instantiate(spike.prefab, tile.transform.position, Quaternion.identity);
+        PositionPassengerOnTile(tile, passenger, spike.yOffset);
         return passenger;
     }
     

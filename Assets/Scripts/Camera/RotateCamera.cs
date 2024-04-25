@@ -42,6 +42,7 @@ public class RotateCamera : MonoBehaviour
         }
         else if (characterMovement.GetIsStandingStill() && isCameraMoving)
         {
+            
             transform.RotateAround(playableCharacter.transform.position, Vector3.up, rotateByDegrees * Time.deltaTime);
             degreesRotated += Math.Abs(rotateByDegrees) * Time.deltaTime;
             if (degreesRotated >= 90)
@@ -50,8 +51,9 @@ public class RotateCamera : MonoBehaviour
                  * Ensures that after the camera rotation transition completed, the final rotation is divisible by 90.
                  * Otherwise, the camera can slowly get out of position if multiple camera rotations happen.
                  */
+            
                 transform.rotation = Quaternion.Euler(cameraFollowScript.cameraRotation.x, previousRotationY + rotateByDegrees, cameraFollowScript.cameraRotation.z);
-                
+
                 cameraFollowScript.SetDistanceCameraToPlayer(transform.position - playableCharacter.transform.position);
                 characterMovement.AssignKeys();
                 characterMovement.SetIsCameraMoving(false);

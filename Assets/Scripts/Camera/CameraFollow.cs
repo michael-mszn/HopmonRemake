@@ -14,6 +14,9 @@ public class CameraFollow : MonoBehaviour
     private Movement characterRotation;
 
     private Vector3 distanceCameraToPlayer;
+
+    private Vector3 targetPosition;
+    //private Vector3 velocity = Vector3.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,7 @@ public class CameraFollow : MonoBehaviour
         transform.position = playableCharacter.transform.position + cameraOffset;
         characterRotation = playableCharacter.GetComponent<Movement>();
         distanceCameraToPlayer = transform.position - playableCharacter.transform.position;
-        
+
     }
 
     // Update is called once per frame
@@ -42,6 +45,8 @@ public class CameraFollow : MonoBehaviour
     public void MoveCamera()
     {
         transform.position = playableCharacter.transform.position + distanceCameraToPlayer;
+        //targetPosition = playableCharacter.transform.position + distanceCameraToPlayer;
+        //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.3f);
     }
     
     public void SetDistanceCameraToPlayer(Vector3 distanceVector)

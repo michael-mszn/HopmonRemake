@@ -16,6 +16,7 @@ TagManager:
   - SwitchTile
   - OneWayTile
   - Monster
+  - SpikeTile
   layers:
   - Default
   - TransparentFX

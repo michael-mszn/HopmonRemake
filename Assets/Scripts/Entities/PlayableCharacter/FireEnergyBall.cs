@@ -39,7 +39,7 @@ public class FireEnergyBall : MonoBehaviour
             firedEnergyBall.transform.position = characterTransform.position;
             firedEnergyBall.SetActive(true);
             energyBallScript.StartTravelling(destination);
-            cooldown = 5f;
+            cooldown = CharacterManager.Instance.fireCooldown;
         }
     }
 
