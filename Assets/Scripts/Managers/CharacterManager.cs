@@ -33,6 +33,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     void Start()
     {
         isInitialized = false;
+        SetSpawnPoint();
         lowestSpeedLimit = maximumSpeed * lowestSpeedPercentage;
         currentSpeed = maximumSpeed;
         hp = 2;
@@ -55,11 +56,12 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     /*
      * Properly centers the playable character on the tile grid
      */
-    public void SetSpawnPoint(GameObject character)
+    public void SetSpawnPoint()
     {
         baseTile = GameObject.FindWithTag("Map").transform.Find("BaseTile").gameObject.GetComponent<Transform>();
         character.transform.position = new Vector3(baseTile.transform.position.x, baseTile.transform.position.y + 7,
             baseTile.transform.position.z);
+        character.GetComponent<Movement>().InitDestination();
     }
     
     public void AddCrystal()
@@ -113,19 +115,22 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
 
     public void TakeDamage()
     {
-        if (invulnerabilityTimer <= 0)
+        if (!PauseMenu.isPaused)
         {
-            hp -= 1;
-            UIManager.Instance.UpdateHpText();
-            if (hp == 0)
+            if (invulnerabilityTimer <= 0)
             {
-                hp = 0;
-                UIManager.Instance.ShowGameOver();
-            }
-            else
-            {
-                invulnerabilityTimer = invulnerabilitySeconds;
-                DoInvulnerabilityFrameFlickering(1f, 0f, Color.red);
+                hp -= 1;
+                UIManager.Instance.UpdateHpText();
+                if (hp == 0)
+                {
+                    hp = 0;
+                    UIManager.Instance.ShowGameOver();
+                }
+                else
+                {
+                    invulnerabilityTimer = invulnerabilitySeconds;
+                    DoInvulnerabilityFrameFlickering(1f, 0f, Color.red);
+                }
             }
         }
     }

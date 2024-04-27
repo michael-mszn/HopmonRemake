@@ -20,8 +20,6 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CharacterManager.Instance.SetSpawnPoint(gameObject);
-        destination = transform.position;
         isCameraMoving = false;
         _camera = Camera.main;
 
@@ -165,5 +163,10 @@ public class Movement : MonoBehaviour
     public void SetIsCameraMoving(bool v)
     {
         isCameraMoving = v;
+    }
+
+    public void InitDestination()
+    {
+        destination = transform.position;
     }
 }

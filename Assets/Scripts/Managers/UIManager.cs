@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Setup;
 using UnityEngine.UI;
 using TMPro;
@@ -82,7 +83,7 @@ public class UIManager : MonoBehaviour
     {
         if (cooldown != 0)
         {
-            fireCooldownText.text = "" + $"{cooldown:#0.0}" + "s";
+            fireCooldownText.text = "" + cooldown.ToString("#0.0", CultureInfo.InvariantCulture) + "s";
         }
         else
         {
@@ -92,7 +93,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowGameOver()
     {
-        //gameOverScreen.SetActive(true);
+        PauseMenu.isPaused = true;
+        gameOverScreen.SetActive(true);
     }
     
     public void InitializeUI()
