@@ -11,9 +11,15 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI crystalProgressText;
     public TextMeshProUGUI crystalCarriedText;
+    public TextMeshProUGUI fireCooldownText;
     public GameObject gameOverScreen;
+    public GameObject energyBar;
+    public Color unloadedColor;
+    public Color loadedColor;
     public static UIManager Instance;
     private List<IInitializedFlag> WaitForScriptsList;
+    private List<Image> energyBarSquares;
+    
     
     private bool hasFinishedLoading;
 
@@ -26,8 +32,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         WaitForScriptsList = new();
+        energyBarSquares = new();
         hasFinishedLoading = false;
         gameOverScreen.SetActive(false);
+        InitializeColors();
         WaitForScriptsList.Add(CharacterManager.Instance.GetComponent<CharacterManager>());
         WaitForScriptsList.Add(LevelManager.Instance.GetComponent<LevelManager>());
     }
@@ -70,10 +78,21 @@ public class UIManager : MonoBehaviour
             LevelManager.Instance.GetCrystalsInLevel();
     }
 
+    public void UpdateFireCooldownText(float cooldown)
+    {
+        if (cooldown != 0)
+        {
+            fireCooldownText.text = "" + $"{cooldown:#0.0}" + "s";
+        }
+        else
+        {
+            fireCooldownText.text = "READY";
+        }
+    }
+
     public void ShowGameOver()
     {
-        Time.timeScale = 0f;
-        gameOverScreen.SetActive(true);
+        //gameOverScreen.SetActive(true);
     }
     
     public void InitializeUI()
@@ -81,5 +100,30 @@ public class UIManager : MonoBehaviour
         UpdateHpText();
         UpdateCrystalCarriedText();
         UpdateCrystalsLeftText();
+        UpdateFireCooldownText(0);
     }
+    
+    public void SetEnergySquareLoaded(int index)
+    {
+        energyBarSquares[index].color = loadedColor;
+    }
+    
+    public void SetEnergySquareUnloaded(int index)
+    {
+        energyBarSquares[index].color = unloadedColor;
+    }
+
+    private void InitializeColors()
+    {
+        unloadedColor.a = 1;
+        loadedColor.a = 1;
+        
+        foreach (Transform child in energyBar.transform)
+        {
+            Image energySquare = child.gameObject.GetComponent<Image>();
+            energySquare.color = loadedColor;
+            energyBarSquares.Add(energySquare);
+        }
+    }
+    
 }
