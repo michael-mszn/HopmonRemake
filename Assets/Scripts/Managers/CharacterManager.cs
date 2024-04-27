@@ -13,12 +13,14 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     public float lowestSpeedPercentage;
     public float invulnerabilitySeconds;
     public float fireCooldown;
+    public GameObject character;
     private float currentSpeed;
-    private float invulnerabilityTimer;
+    public float invulnerabilityTimer;
     private Transform baseTile;
     private float lowestSpeedLimit;
     private int hp;
     private int crystalCarried;
+    private Material characterMaterial;
 
     private bool isInitialized;
 
@@ -37,6 +39,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         crystalCarried = 0;
         invulnerabilityTimer = 0;
         isInitialized = true;
+        characterMaterial = character.GetComponent<Renderer>().material;
     }
     
     void Update()
@@ -44,6 +47,8 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         if (invulnerabilityTimer > 0)
         {
             invulnerabilityTimer -= Time.deltaTime;
+            DoInvulnerabilityFrameFlickering(0.25f, 0.10f, Color.red);
+            DoInvulnerabilityFrameFlickering(1f, 0.4f, Color.white);
         }
     }
 
@@ -114,11 +119,13 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
             UIManager.Instance.UpdateHpText();
             if (hp == 0)
             {
+                hp = 0;
                 UIManager.Instance.ShowGameOver();
             }
             else
             {
                 invulnerabilityTimer = invulnerabilitySeconds;
+                DoInvulnerabilityFrameFlickering(1f, 0f, Color.red);
             }
         }
     }
@@ -126,6 +133,30 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     public bool IsInitialized()
     {
         return isInitialized;
+    }
+
+    IEnumerator ShowInvulnerabilityFrame(float opacity, float delayTime, Color color)
+    {
+        yield return new WaitForSeconds(delayTime);
+        /*
+         * The repeated if check here ensures that the flickering animation matches the actual
+         * i-frame cooldown in the code
+         */
+        if (invulnerabilityTimer > 0)
+        {
+            Color currentColor = color;
+            Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, opacity);
+            characterMaterial.SetColor("_Color", newColor);
+        }
+        else
+        {
+            characterMaterial.SetColor("_Color", Color.white);
+        }
+    }
+    
+    private void DoInvulnerabilityFrameFlickering(float opacity, float delayTime, Color color)
+    {
+        StartCoroutine(ShowInvulnerabilityFrame(opacity, delayTime, color));
     }
     
 }
