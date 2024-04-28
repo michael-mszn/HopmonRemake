@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,49 +12,73 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 cameraRotation;
 
-    private Movement characterRotation;
+    private Movement player;
 
     private Vector3 distanceCameraToPlayer;
 
     private Vector3 targetPosition;
-    //private Vector3 velocity = Vector3.zero;
+    private Vector3 velocity;
+
+    private float cameraTimer;
+    private float smoothCameraTransitionWaitTime;
+
+    private bool enableCameraQERotation;
     
     // Start is called before the first frame update
     void Start()
     {
+        smoothCameraTransitionWaitTime = 0.3f;
+        velocity = Vector3.zero;
         transform.rotation = Quaternion.Euler(cameraRotation);
-        characterRotation = playableCharacter.GetComponent<Movement>();
+        player = playableCharacter.GetComponent<Movement>();
+        enableCameraQERotation = true;
         transform.position = playableCharacter.transform.position + cameraOffset;
         distanceCameraToPlayer = cameraOffset;
+        cameraTimer = 0f;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-         * If the player can not change their rotation right now, then it means a movement command is being
-         * processed right now. Therefore, the camera needs to adjust its position as long as the command is
-         * still executing
-         */ 
-        if (!characterRotation.GetCanRotate())
+        cameraTimer -= Time.deltaTime;
+        if (!player.GetIsStandingStill())
         {
-            MoveCamera();
+            SmoothCameraTransition(smoothCameraTransitionWaitTime);
+        }
+        else if (cameraTimer > 0)
+        {
+            SmoothCameraTransition(0f);
+            player.SetCanRotate(true);
+        }
+        else
+        {
+            enableCameraQERotation = true;
         }
     }
 
-    public void MoveCamera()
+    IEnumerator MoveCamera(float time)
     {
-        transform.position = playableCharacter.transform.position + distanceCameraToPlayer;
-        /*
-         * Smooth camera movement
-         */
-        //targetPosition = playableCharacter.transform.position + distanceCameraToPlayer;
-        //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.3f);
+        cameraTimer = Math.Min(cameraTimer + time, smoothCameraTransitionWaitTime);
+        player.SetCanRotate(false);
+        enableCameraQERotation = false;
+        targetPosition = playableCharacter.transform.position + distanceCameraToPlayer;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.17f);
+        yield break;
+    }
+    
+    private void SmoothCameraTransition(float time)
+    {
+        StartCoroutine(MoveCamera(time));
     }
     
     public void SetDistanceCameraToPlayer(Vector3 distanceVector)
     {
         distanceCameraToPlayer = distanceVector;
+    }
+
+    public bool IsCameraQERotationEnabled()
+    {
+        return enableCameraQERotation;
     }
 }

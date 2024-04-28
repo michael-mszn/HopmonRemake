@@ -123,7 +123,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
                 if (hp == 0)
                 {
                     hp = 0;
-                    UIManager.Instance.ShowGameOver();
+                    //UIManager.Instance.ShowGameOver();
                 }
                 else
                 {

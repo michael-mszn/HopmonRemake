@@ -1,4 +1,4 @@
-﻿namespace Util
+﻿namespace Entities.PlayableCharacter
 {
     /*
      * Some Tiles count as walkable tiles, but either not consistently or not in a specific movement context.
