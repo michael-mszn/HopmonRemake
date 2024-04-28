@@ -8,12 +8,12 @@ using UnityEngine;
  */
 public class MotionlessRotation : Controls
 {
-        private Movement characterRotation;
+        private Movement player;
         
     // Start is called before the first frame update
     void Start()
     {
-            characterRotation = gameObject.GetComponent<Movement>();
+            player = gameObject.GetComponent<Movement>();
             /*
              * Camera is not allowed by Unity to be instantiated inside an abstract class
              */
@@ -23,7 +23,7 @@ public class MotionlessRotation : Controls
     // Update is called once per frame
     void Update()
     {
-            if (characterRotation.GetCanPlayerRotate())
+            if (player.GetCanPlayerRotate() && !player.GetIsCameraRotating())
             {
                     if (Input.GetKey(forwardKeyCode))
                     {

@@ -112,9 +112,14 @@ public class Movement : Controls
         return transform.position == destination;
     }
 
-    public void SetIsCameraMoving(bool v)
+    public void SetIsCameraRotating(bool v)
     {
         isCameraRotating = v;
+    }
+    
+    public bool GetIsCameraRotating()
+    {
+        return isCameraRotating;
     }
 
     public void InitDestination()

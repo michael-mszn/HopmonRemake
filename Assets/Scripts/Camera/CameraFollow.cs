@@ -41,9 +41,15 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cameraTimer -= Time.deltaTime;
+        if (cameraTimer > 0)
+        {
+            cameraTimer -= Time.deltaTime;
+        }
+
         if (!player.GetIsStandingStill())
         {
+            player.SetCanRotate(false);
+            enableCameraQERotation = false;
             SmoothCameraTransition(smoothCameraTransitionWaitTime);
         }
         else if (cameraTimer > 0)
@@ -60,8 +66,6 @@ public class CameraFollow : MonoBehaviour
     IEnumerator MoveCamera(float time)
     {
         cameraTimer = Math.Min(cameraTimer + time, smoothCameraTransitionWaitTime);
-        player.SetCanRotate(false);
-        enableCameraQERotation = false;
         targetPosition = playableCharacter.transform.position + distanceCameraToPlayer;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.17f);
         yield break;

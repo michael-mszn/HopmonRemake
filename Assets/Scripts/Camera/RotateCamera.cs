@@ -12,11 +12,6 @@ public class RotateCamera : MonoBehaviour
     private bool isCameraRotating;
     private float rotateByDegrees;
     private float degreesRotated;
-    /*
-     * Unfortunately, transform.rotation for the Camera is always reset to 0 by the
-     * Unity engine once a change is completed, so it needs to be tracked separately.
-     */
-    private float previousRotationY;
     
     // Start is called before the first frame update
     void Start()
@@ -34,7 +29,7 @@ public class RotateCamera : MonoBehaviour
             return;
         }
         
-        if (characterMovement.GetIsStandingStill() && !isCameraRotating && !PauseMenu.isPaused)
+        if (!isCameraRotating && !PauseMenu.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -46,25 +41,24 @@ public class RotateCamera : MonoBehaviour
                 InitiateCameraMotion(-90);
             }
         }
-        else if (characterMovement.GetIsStandingStill() && isCameraRotating)
+        else if (isCameraRotating)
         {
             
             transform.RotateAround(playableCharacter.transform.position, Vector3.up, rotateByDegrees * Time.deltaTime);
-            degreesRotated += Math.Abs(rotateByDegrees) * Time.deltaTime;
-            if (degreesRotated >= 90)
+            degreesRotated += rotateByDegrees * Time.deltaTime;
+            if (Math.Abs(degreesRotated) >= 90)
             {
                 /*
                  * Ensures that after the camera rotation transition completed, the final rotation is divisible by 90.
                  * Otherwise, the camera can slowly get out of position if multiple camera rotations happen.
                  */
-            
-                transform.rotation = Quaternion.Euler(cameraFollowScript.cameraRotation.x, previousRotationY + rotateByDegrees, cameraFollowScript.cameraRotation.z);
-
+                transform.RotateAround(playableCharacter.transform.position, Vector3.up, rotateByDegrees - degreesRotated
+                );
+                
                 cameraFollowScript.SetDistanceCameraToPlayer(transform.position - playableCharacter.transform.position);
                 CameraRotationCompletion?.Invoke();
-                characterMovement.SetIsCameraMoving(false);
+                characterMovement.SetIsCameraRotating(false);
                 isCameraRotating = false;
-                previousRotationY += rotateByDegrees;
             }
         }
     }
@@ -72,7 +66,7 @@ public class RotateCamera : MonoBehaviour
     private void InitiateCameraMotion(float deg)
     {
         isCameraRotating = true;
-        characterMovement.SetIsCameraMoving(true);
+        characterMovement.SetIsCameraRotating(true);
         rotateByDegrees = deg;
         degreesRotated = 0;
     }
