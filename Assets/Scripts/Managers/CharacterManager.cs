@@ -14,8 +14,8 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     public float invulnerabilitySeconds;
     public float fireCooldown;
     public GameObject character;
-    private float currentSpeed;
     public float invulnerabilityTimer;
+    private float currentSpeed;
     private Transform baseTile;
     private float lowestSpeedLimit;
     private int hp;
@@ -48,8 +48,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         if (invulnerabilityTimer > 0)
         {
             invulnerabilityTimer -= Time.deltaTime;
-            DoInvulnerabilityFrameFlickering(0.25f, 0.10f, Color.red);
-            DoInvulnerabilityFrameFlickering(1f, 0.4f, Color.white);
+            DoInvulnerabilityFrameFlickering();
         }
     }
 
@@ -129,7 +128,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
                 else
                 {
                     invulnerabilityTimer = invulnerabilitySeconds;
-                    DoInvulnerabilityFrameFlickering(1f, 0f, Color.red);
+                    ChangeMaterial(Color.red, 1f);
                 }
             }
         }
@@ -140,28 +139,31 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         return isInitialized;
     }
 
-    IEnumerator ShowInvulnerabilityFrame(float opacity, float delayTime, Color color)
+    IEnumerator ShowInvulnerabilityFrame()
     {
-        yield return new WaitForSeconds(delayTime);
+        yield return new WaitForSeconds(0.05f);
+        ChangeMaterial(Color.white, 1f);
+        yield return new WaitForSeconds(0.3f);
         /*
          * The repeated if check here ensures that the flickering animation matches the actual
          * i-frame cooldown in the code
          */
         if (invulnerabilityTimer > 0)
         {
-            Color currentColor = color;
-            Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, opacity);
-            characterMaterial.SetColor("_Color", newColor);
-        }
-        else
-        {
-            characterMaterial.SetColor("_Color", Color.white);
+            ChangeMaterial(Color.white, 0.25f);
         }
     }
-    
-    private void DoInvulnerabilityFrameFlickering(float opacity, float delayTime, Color color)
+
+    private void ChangeMaterial(Color color, float opacity)
     {
-        StartCoroutine(ShowInvulnerabilityFrame(opacity, delayTime, color));
+        Color currentColor = color;
+        Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, opacity);
+        characterMaterial.SetColor("_Color", newColor);
+    }
+    
+    private void DoInvulnerabilityFrameFlickering()
+    {
+        StartCoroutine(ShowInvulnerabilityFrame());
     }
     
 }

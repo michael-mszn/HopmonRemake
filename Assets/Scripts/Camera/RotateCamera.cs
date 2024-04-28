@@ -12,8 +12,8 @@ public class RotateCamera : MonoBehaviour
     private float rotateByDegrees;
     private float degreesRotated;
     /*
-     * Unfortunately, transform.rotation for the Camera is always reset to 0 once a change is completed,
-     * so it needs to be tracked separately.
+     * Unfortunately, transform.rotation for the Camera is always reset to 0 by the
+     * Unity engine once a change is completed, so it needs to be tracked separately.
      */
     private float previousRotationY;
     

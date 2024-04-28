@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 8625756304700459441, guid: 951e06361f5c9c149b20907b065c73e7, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -136,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 665486517013058024, guid: e4c1f3cf5a4633a4db8c25b5113f12f7, type: 3}
       propertyPath: m_TagString
-      value: Tile
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 2294685155907146948, guid: e4c1f3cf5a4633a4db8c25b5113f12f7, type: 3}
       propertyPath: m_LocalPosition.x

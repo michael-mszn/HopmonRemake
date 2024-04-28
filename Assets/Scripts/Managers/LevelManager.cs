@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Setup;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour, IInitializedFlag
 {
     public static LevelManager Instance;
-    public static List<GameObject> AllTiles;
+    public static List<GameObject> AllTiles = new();
+    public static event Action LevelManagerIsReady;
     private int crystalsInLevel;
     private int crystalsLeft;
 
@@ -14,15 +16,17 @@ public class LevelManager : MonoBehaviour, IInitializedFlag
     private void Awake()
     {
         Instance = this;
+        /*
+         * Reset the tile list to accomodate for level restarts
+         */
+        AllTiles.Clear();
         Crystal.CrystalSpawn += OnCrystalSpawn;
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        isInitialized = false;
-        AllTiles = new();
-        UpdateTileCoordinates("Tile", AllTiles);
+        LevelManagerIsReady?.Invoke();
         isInitialized = true;
     }
 

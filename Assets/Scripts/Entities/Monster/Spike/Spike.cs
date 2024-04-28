@@ -14,8 +14,8 @@ public class Spike : Monster
     {
         ai = gameObject.AddComponent<FixedPathing>();
         ai.GetComponent<FixedPathing>().SetPathTile(pathTile);
-        LevelManager.Instance.UpdateTileCoordinates(pathTile.tag, allSpikeTiles);
         ai.GetComponent<FixedPathing>().SetPathTileList(allSpikeTiles);
+        LevelManager.Instance.UpdateTileCoordinates(pathTile.tag, allSpikeTiles);
     }
 
     // Update is called once per frame

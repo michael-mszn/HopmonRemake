@@ -45,6 +45,9 @@ public class CameraFollow : MonoBehaviour
     public void MoveCamera()
     {
         transform.position = playableCharacter.transform.position + distanceCameraToPlayer;
+        /*
+         * Smooth camera movement
+         */
         //targetPosition = playableCharacter.transform.position + distanceCameraToPlayer;
         //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.3f);
     }

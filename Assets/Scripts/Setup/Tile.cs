@@ -6,10 +6,16 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject passenger;
+
+    void Awake()
+    {
+        LevelManager.LevelManagerIsReady += OnLevelManagerIsReady;
+    }
     
     // Start is called before the first frame update
     void Start()
     { 
+        
         /*
          * All Tiles, Interactables and Monsters must be the child of a Map GameObject
          */
@@ -42,4 +48,16 @@ public class Tile : MonoBehaviour
         passenger.transform.parent = map.transform;
     }
     
+    private void OnLevelManagerIsReady()
+    {
+        if (tag.Contains("Tile"))
+        {
+            LevelManager.AllTiles.Add(gameObject);
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        LevelManager.LevelManagerIsReady -= OnLevelManagerIsReady;
+    }
 }
