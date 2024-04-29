@@ -37,6 +37,11 @@ public class Spike : Monster
         {
             CharacterManager.Instance.TakeDamage();
         }
+        
+        if (entity.gameObject.tag.Equals("Monster"))
+        {
+            Destroy(entity.gameObject);
+        }
     }
 
 

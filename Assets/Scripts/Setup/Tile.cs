@@ -42,7 +42,7 @@ public class Tile : MonoBehaviour
         }
         else if (UnityEngine.Random.Range(0f, 1.0f) > 0.28f && UnityEngine.Random.Range(0f, 1.0f) <= 0.33f)
         {
-            passenger = PassengerManager.Instance.SetPassengerBird(gameObject);
+            passenger = PassengerManager.Instance.SetPassengerStalker(gameObject);
         }
         
         passenger.transform.parent = map.transform;

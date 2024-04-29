@@ -8,6 +8,8 @@ public class Movement : Controls
     private Vector3 destination;
     private Vector3 attemptedMove;
     private bool isCameraRotating;
+    private bool hasRecentlyAddedPosition;
+    public static event Action PlayerMovement;
 
     
     // Start is called before the first frame update
@@ -15,6 +17,7 @@ public class Movement : Controls
     {
         canPlayerRotate = true;
         isCameraRotating = false;
+        hasRecentlyAddedPosition = false;
         /*
          * Camera is not allowed by Unity to be instantiated inside an abstract class
          */
@@ -25,6 +28,12 @@ public class Movement : Controls
     void Update()
     {
 
+        if (GetIsStandingStill() && !hasRecentlyAddedPosition)
+        {
+            PlayerMovement?.Invoke();
+            hasRecentlyAddedPosition = true;
+        }
+        
         /*
          * Tile based movement. Valid Movement Check is done by scanning all tile coordinates.
          * Not using collision detection or wall objects ensures ease of use in level design and better scalability
@@ -86,6 +95,7 @@ public class Movement : Controls
                 if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMoveCoordinates.x) &&
                     Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMoveCoordinates.z))
                 {
+                    hasRecentlyAddedPosition = false;
                     //print("Moving to tile: X = " + Math.Floor(tile.transform.position.x) + " | z = " + Math.Floor(tile.transform.position.z));
                     return true;
                 }

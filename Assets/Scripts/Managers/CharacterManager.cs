@@ -14,25 +14,28 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     public float invulnerabilitySeconds;
     public float fireCooldown;
     public GameObject character;
-    public float invulnerabilityTimer;
+    private float invulnerabilityTimer;
     private float currentSpeed;
     private Transform baseTile;
     private float lowestSpeedLimit;
     private int hp;
     private int crystalCarried;
     private Material characterMaterial;
+    private List<Vector3> playerTileLog;
 
     private bool isInitialized;
 
     private void Awake()
     {
             Instance = this;
+            Movement.PlayerMovement += OnPlayerMovement;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         isInitialized = false;
+        playerTileLog = new();
         SetSpawnPoint();
         lowestSpeedLimit = maximumSpeed * lowestSpeedPercentage;
         currentSpeed = maximumSpeed;
@@ -164,6 +167,26 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     private void DoInvulnerabilityFrameFlickering()
     {
         StartCoroutine(ShowInvulnerabilityFrame());
+    }
+    /*
+     * Player coordinates are saved with y = 0 because the y-level is trivial for equal position
+     * comparisons.  
+     */
+    private void OnPlayerMovement()
+    {
+        Vector3 playerPosition = new Vector3((float)Math.Floor(character.transform.position.x), 0,
+            (float)Math.Floor(character.transform.position.z));
+        playerTileLog.Add(playerPosition);
+    }
+
+    private void OnDestroy()
+    {
+        Movement.PlayerMovement -= OnPlayerMovement;   
+    }
+
+    public List<Vector3> GetPlayerTileLog()
+    {
+        return playerTileLog;
     }
     
 }

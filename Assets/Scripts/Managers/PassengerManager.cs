@@ -12,6 +12,7 @@ public class PassengerManager : MonoBehaviour
     public Passenger bird;
     public Passenger dragon;
     public Passenger spike;
+    public Passenger stalker;
     
     private void Awake()
     {
@@ -58,6 +59,13 @@ public class PassengerManager : MonoBehaviour
     {
         GameObject passenger = Instantiate(spike.prefab, tile.transform.position, Quaternion.identity);
         PositionPassengerOnTile(tile, passenger, spike.yOffset);
+        return passenger;
+    }
+    
+    public GameObject SetPassengerStalker(GameObject tile)
+    {
+        GameObject passenger = Instantiate(stalker.prefab, tile.transform.position, Quaternion.identity);
+        PositionPassengerOnTile(tile, passenger, stalker.yOffset);
         return passenger;
     }
     

@@ -1283,6 +1283,9 @@ MonoBehaviour:
   spike:
     prefab: {fileID: 4853565060855214129, guid: 6a0873d907052c249bd6ca522e2c46af, type: 3}
     yOffset: 8
+  stalker:
+    prefab: {fileID: 8386833635635383197, guid: 1e0ffba4ccfb6e240b86bfcaa86f5bb9, type: 3}
+    yOffset: 8
 --- !u!4 &434928843
 Transform:
   m_ObjectHideFlags: 0
