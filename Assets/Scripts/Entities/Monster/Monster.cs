@@ -9,6 +9,7 @@ namespace Entities.Monster
     {
         public int hp;
         public float speed;
+        public int damage;
         protected AI.AI ai;
     }
 }

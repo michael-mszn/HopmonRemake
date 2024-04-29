@@ -33,7 +33,7 @@ public class Bird : Monster
 
         if (entity.gameObject.tag.Equals("Character"))
         {
-            CharacterManager.Instance.TakeDamage();
+            CharacterManager.Instance.TakeDamage(damage);
         }
     }
     

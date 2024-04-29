@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 2
   speed: 10
+  damage: 1
   rageSpeed: 45
   rageDuration: 2.5
   hurtMaterial: {fileID: 2100000, guid: 739cc71214ed25a4e91b5f90215d0e2e, type: 2}

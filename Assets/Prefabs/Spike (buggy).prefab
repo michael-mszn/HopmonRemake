@@ -1605,6 +1605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 999
   speed: 30
+  damage: 1
   pathTile: {fileID: 536568092780277393, guid: 62569f3a08b135f439a7fb07ff688870, type: 3}
 --- !u!1 &5130755548723027447
 GameObject:

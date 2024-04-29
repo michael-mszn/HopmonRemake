@@ -42,8 +42,8 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         hp = 2;
         crystalCarried = 0;
         invulnerabilityTimer = 0;
-        isInitialized = true;
         characterMaterial = character.GetComponent<Renderer>().material;
+        isInitialized = true;
     }
     
     void Update()
@@ -115,18 +115,19 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         return crystalCarried;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
         if (!PauseMenu.isPaused)
         {
             if (invulnerabilityTimer <= 0)
             {
-                hp -= 1;
+                hp -= damage;
                 UIManager.Instance.UpdateHpText();
-                if (hp == 0)
+                if (hp <= 0)
                 {
                     hp = 0;
-                    //UIManager.Instance.ShowGameOver();
+                    UIManager.Instance.UpdateHpText();
+                    UIManager.Instance.ShowGameOver();
                 }
                 else
                 {

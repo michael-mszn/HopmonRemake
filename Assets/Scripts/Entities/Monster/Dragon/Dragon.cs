@@ -68,7 +68,7 @@ public class Dragon : Monster
 
         if (entity.gameObject.tag.Equals("Character"))
         {
-            CharacterManager.Instance.TakeDamage();
+            CharacterManager.Instance.TakeDamage(damage);
         }
     }
 

@@ -10,8 +10,6 @@ public class TrackPlayerPathing : AI
 
     private int playerTileLogIndex;
 
-    public static event Action PlayerFound;
-
     public override void Move()
     {
         if(!hasFoundPlayer)
@@ -43,7 +41,6 @@ public class TrackPlayerPathing : AI
             (float) Math.Floor(transform.position.z));
         if (CharacterManager.Instance.GetPlayerTileLog().Contains(monsterPosition))
         {
-            PlayerFound?.Invoke();
             hasFoundPlayer = true;
             playerTileLogIndex = CharacterManager.Instance.GetPlayerTileLog().FindIndex(a => a.Equals(monsterPosition));
         }
@@ -59,6 +56,10 @@ public class TrackPlayerPathing : AI
         
         playerTileLogIndex++;
         isCurrentlyMoving = true;
-        print(playerTileLogIndex);
+    }
+
+    public bool HasFoundPlayer()
+    {
+        return hasFoundPlayer;
     }
 }
