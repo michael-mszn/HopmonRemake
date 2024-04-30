@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5d595ece54bf796428807ce3df33eec1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5f3a52e803125408bd8a677f2f37e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 100
   energyBall: {fileID: 7187171431768393710, guid: f932df28ca34e354ca0fe4d3626a920b, type: 3}
+  maximumTravelDistance: 250
 --- !u!1001 &1485369580092167434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -221,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
       propertyPath: m_LocalRotation.z
@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -243,6 +243,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f5e70b692f804d346a44df961b6ad5a8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d595ece54bf796428807ce3df33eec1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

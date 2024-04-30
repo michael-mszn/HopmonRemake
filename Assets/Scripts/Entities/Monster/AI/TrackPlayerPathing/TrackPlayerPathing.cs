@@ -19,28 +19,34 @@ public class TrackPlayerPathing : AI
 
     public override void Move()
     {
-        if (!hasFoundPlayer)
-        {
-            DetermineNeighbourTiles();
-            randomPathingAI.Move();
-        }
-        else
-        {
-            if (!isCurrentlyMoving)
+        if(!gameObject.tag.Equals("Falling")) {
+            if (!hasFoundPlayer)
             {
-                DetermineDestination();
+                DetermineNeighbourTiles();
+                randomPathingAI.Move();
             }
             else
             {
-                if (transform.position != destination)
+                if (!isCurrentlyMoving)
                 {
-                    Step();
+                    DetermineDestination();
                 }
                 else
                 {
-                    isCurrentlyMoving = false;
+                    if (transform.position != destination)
+                    {
+                        Step();
+                    }
+                    else
+                    {
+                        isCurrentlyMoving = false;
+                    }
                 }
             }
+        }
+        else
+        {
+            StartFalling();
         }
     }
 

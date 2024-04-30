@@ -10,28 +10,31 @@ public class RandomPathing : AI
 
     public override void Move()
     {
-        if (!isCurrentlyMoving)
+        if (!gameObject.tag.Equals("Falling"))
         {
-            DetermineNeighbourTiles();
-            if (neighbouringTiles.Any())
+            if (!isCurrentlyMoving)
             {
-                DetermineDestination();
+                DetermineNeighbourTiles();
+                if (neighbouringTiles.Any())
+                {
+                    DetermineDestination();
+                }
+            }
+            else
+            {
+                if (transform.position != destination)
+                {
+                    Step();
+                }
+                else
+                {
+                    isCurrentlyMoving = false;
+                }
             }
         }
         else
         {
-            if (transform.position != destination && !isCurrentlyFalling)
-            {
-                Step();
-            }
-            else if(transform.position == destination && !isCurrentlyFalling)
-            {
-                isCurrentlyMoving = false;
-            }
-            else if (isCurrentlyFalling)
-            {
-                Fall();
-            }
+            StartFalling();
         }
     }
     

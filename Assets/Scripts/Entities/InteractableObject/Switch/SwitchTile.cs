@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entities.InteractableObject;
+using Entities.Monster;
 using UnityEngine;
 
 public class SwitchTile : MonoBehaviour
@@ -31,6 +32,14 @@ public class SwitchTile : MonoBehaviour
         Color currentColor = _material.color;
         Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, opacity);
         _material.SetColor("_Color", newColor);
+    }
+
+    public void OnCollisionStay(Collision entity)
+    {
+        if (tag.Equals("DeactivatedTile") && entity.gameObject.tag.Equals("Monster"))
+        {
+            entity.gameObject.tag = "Falling";
+        }
     }
     
 }

@@ -17,6 +17,7 @@ TagManager:
   - OneWayTile
   - Monster
   - SpikeTile
+  - Falling
   layers:
   - Default
   - TransparentFX

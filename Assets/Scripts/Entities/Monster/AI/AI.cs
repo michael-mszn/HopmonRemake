@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,14 +70,6 @@ namespace Entities.Monster.AI
             isCurrentlyMoving = true;
         }
         
-        protected void Fall()
-        {
-            Vector3 fallDestination = transform.position + monsterScript.speed * transform.forward;
-            destination = new Vector3(fallDestination.x, -200, fallDestination.z);
-            transform.position = Vector3.MoveTowards(transform.position, destination, 40 * Time.deltaTime);
-            Destroy(gameObject, 3f);
-        }
-        
         protected void Step()
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, monsterScript.speed * Time.deltaTime);
@@ -86,6 +79,20 @@ namespace Entities.Monster.AI
         {
             transform.LookAt(destinationTile.transform);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        }
+        
+        IEnumerator Fall()
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destination, 40 * Time.deltaTime);
+            yield return new WaitForSeconds(3f);
+            Destroy(gameObject);
+        }
+
+        protected void StartFalling()
+        {
+            Vector3 fallDestination = transform.position + 20 * transform.forward;
+            destination = new Vector3(fallDestination.x, -200, fallDestination.z);
+            StartCoroutine(Fall());
         }
         
         private void OnSwitch()

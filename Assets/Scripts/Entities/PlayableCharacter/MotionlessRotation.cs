@@ -23,7 +23,7 @@ public class MotionlessRotation : Controls
     // Update is called once per frame
     void Update()
     {
-            if (player.GetCanPlayerRotate() && !player.GetIsCameraRotating())
+            if (player.GetCanPlayerRotate() && !player.GetIsCameraRotating() && !PauseMenu.isPaused)
             {
                     if (Input.GetKey(forwardKeyCode))
                     {

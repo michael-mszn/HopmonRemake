@@ -13,9 +13,11 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     public float lowestSpeedPercentage;
     public float invulnerabilitySeconds;
     public float fireCooldown;
-    public GameObject character;
-    private float invulnerabilityTimer;
     public float currentSpeed;
+    [Header("Do not add a prefab of the character but an instantiated object")]
+    public GameObject character;
+    
+    private float invulnerabilityTimer;
     private Transform baseTile;
     private float lowestSpeedLimit;
     private int hp;
@@ -87,12 +89,11 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         while (crystalCarried != 0)
         {
             crystalCarried -= 1;
-            currentSpeed += maximumSpeed*0.075f;
             LevelManager.Instance.DecrementCrystalsLeft();
             UIManager.Instance.UpdateCrystalCarriedText();
             UIManager.Instance.UpdateCrystalsLeftText();
         }
-
+        currentSpeed = maximumSpeed;
         if (LevelManager.Instance.GetCrystalsLeft() == 0)
         {
             //TODO: Proper transition to next level
@@ -169,6 +170,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     {
         StartCoroutine(ShowInvulnerabilityFrame());
     }
+    
     /*
      * Player coordinates are saved with y = 0 because the y-level is trivial for equal position
      * comparisons.  
