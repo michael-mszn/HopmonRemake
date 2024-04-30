@@ -13,18 +13,18 @@ public class SwitchTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            _material = gameObject.GetComponent<Renderer>().material;
-            if (switchColor == SwitchTileColor.ORANGE)
-            {
-                gameObject.tag = "ActivatedTile";
-                RenderOpacitySwitch(1.0f);
-            }
-            else
-            {
-                gameObject.tag = "DeactivatedTile";
-                RenderOpacitySwitch(0.25f);
-            }
-        
+        SwitchButton.Switch += OnSwitch;
+        _material = gameObject.GetComponent<Renderer>().material;
+        if (switchColor == SwitchTileColor.ORANGE)
+        {
+            gameObject.tag = "ActivatedTile";
+            RenderOpacitySwitch(1.0f);
+        }
+        else
+        {
+            gameObject.tag = "DeactivatedTile";
+            RenderOpacitySwitch(0.25f);
+        }
     }
 
     public void RenderOpacitySwitch(float opacity)
@@ -41,5 +41,23 @@ public class SwitchTile : MonoBehaviour
             entity.gameObject.tag = "Falling";
         }
     }
-    
+
+    private void OnSwitch()
+    {
+        if (tag.Equals("ActivatedTile"))
+        {
+            tag = "DeactivatedTile";
+            RenderOpacitySwitch(0.25f);
+        }
+        else if (tag.Equals("DeactivatedTile"))
+        {
+            tag = "ActivatedTile";
+            RenderOpacitySwitch(1.0f);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SwitchButton.Switch -= OnSwitch;
+    }
 }

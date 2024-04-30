@@ -12,7 +12,6 @@ namespace Entities.Monster.AI
     {
         protected List<GameObject> neighbouringTiles = new();
         protected bool isCurrentlyMoving;
-        protected bool isCurrentlyFalling;
         protected GameObject destinationTile;
         protected Vector3 destination;
         protected GameObject frontTile, backTile, leftTile, rightTile;
@@ -20,7 +19,6 @@ namespace Entities.Monster.AI
         
         void Awake()
         {
-            SwitchButton.Switch += OnSwitch;
             monsterScript = gameObject.GetComponent<Monster>();
         }
         
@@ -75,7 +73,7 @@ namespace Entities.Monster.AI
             transform.position = Vector3.MoveTowards(transform.position, destination, monsterScript.speed * Time.deltaTime);
         }
         
-        protected void Turn()
+        private void Turn()
         {
             transform.LookAt(destinationTile.transform);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -94,19 +92,5 @@ namespace Entities.Monster.AI
             destination = new Vector3(fallDestination.x, -200, fallDestination.z);
             StartCoroutine(Fall());
         }
-        
-        private void OnSwitch()
-        {
-            if (destinationTile is not null && destinationTile.tag.Equals("DeactivatedTile"))
-            {
-                isCurrentlyFalling = true;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            SwitchButton.Switch -= OnSwitch;
-        }
-        
     }
 }
