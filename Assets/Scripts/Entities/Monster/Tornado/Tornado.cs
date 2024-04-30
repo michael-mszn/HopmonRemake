@@ -4,25 +4,15 @@ namespace Entities.Monster.Tornado
 {
     public class Tornado : Monster
     {
-        private TrackPlayerPathing trackPlayerPathingai;
-        private bool hasFoundPlayer;
         void Start()
         {
-            ai = gameObject.AddComponent<RandomPathing>();
-            gameObject.AddComponent<TrackPlayerPathing>();
-            trackPlayerPathingai = gameObject.GetComponent<TrackPlayerPathing>();
-
+            ai = gameObject.AddComponent<TrackPlayerPathing>();
         }
 
         void Update()
         {
-            if (!trackPlayerPathingai.HasFoundPlayer())
-            {
-                ai.Move();
-            }
-            trackPlayerPathingai.Move();
+            ai.Move();
             Spin();
-
         }
         
         private void Spin()
@@ -37,8 +27,8 @@ namespace Entities.Monster.Tornado
         
             if (entity.gameObject.tag.Equals("Character"))
             {
-                CharacterManager.Instance.TakeDamage(damage);
-                Destroy(gameObject);
+                //UIManager.Instance.ShowGameOver();
+                gameObject.SetActive(false);
             }
         }
         

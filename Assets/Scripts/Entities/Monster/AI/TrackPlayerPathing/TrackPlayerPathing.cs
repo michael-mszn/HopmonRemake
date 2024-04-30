@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Entities.Monster;
 using Entities.Monster.AI;
 using UnityEngine;
 
@@ -10,10 +9,21 @@ public class TrackPlayerPathing : AI
 
     private int playerTileLogIndex;
 
+    private RandomPathing randomPathingAI;
+    
+    void Start()
+    {
+        gameObject.AddComponent<RandomPathing>();
+        randomPathingAI = GetComponent<RandomPathing>();
+    }
+
     public override void Move()
     {
-        if(!hasFoundPlayer)
+        if (!hasFoundPlayer)
+        {
             DetermineNeighbourTiles();
+            randomPathingAI.Move();
+        }
         else
         {
             if (!isCurrentlyMoving)
@@ -22,11 +32,11 @@ public class TrackPlayerPathing : AI
             }
             else
             {
-                if (transform.position != destination && !isCurrentlyFalling)
+                if (transform.position != destination)
                 {
                     Step();
                 }
-                else if(transform.position == destination && !isCurrentlyFalling)
+                else
                 {
                     isCurrentlyMoving = false;
                 }

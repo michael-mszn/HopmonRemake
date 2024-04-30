@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Entities.Monster.AI.RandomPathing;
 using UnityEngine;
 
 namespace Entities.Monster.AI
@@ -22,13 +20,9 @@ namespace Entities.Monster.AI
         void Awake()
         {
             SwitchButton.Switch += OnSwitch;
-        }
-
-        void Start()
-        {
             monsterScript = gameObject.GetComponent<Monster>();
         }
-
+        
         public abstract void Move();
         protected abstract void DetermineNeighbourTiles();
         protected abstract void DetermineDestination();

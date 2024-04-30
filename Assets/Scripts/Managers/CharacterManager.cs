@@ -15,7 +15,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     public float fireCooldown;
     public GameObject character;
     private float invulnerabilityTimer;
-    private float currentSpeed;
+    public float currentSpeed;
     private Transform baseTile;
     private float lowestSpeedLimit;
     private int hp;
@@ -72,7 +72,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         UIManager.Instance.UpdateCrystalCarriedText();
         if (currentSpeed >= lowestSpeedLimit)
         {
-            currentSpeed -= maximumSpeed*0.1f;
+            currentSpeed -= maximumSpeed*0.075f;
         }
     }
 
@@ -87,7 +87,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         while (crystalCarried != 0)
         {
             crystalCarried -= 1;
-            currentSpeed += maximumSpeed*0.1f;
+            currentSpeed += maximumSpeed*0.075f;
             LevelManager.Instance.DecrementCrystalsLeft();
             UIManager.Instance.UpdateCrystalCarriedText();
             UIManager.Instance.UpdateCrystalsLeftText();
