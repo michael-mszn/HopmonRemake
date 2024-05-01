@@ -58,32 +58,32 @@ namespace Entities.Monster.AI
         protected void ScanIfNeighbourTile(GameObject tile)
         {
             Vector3 attemptedMove = transform.position + transform.right * 10;
-            if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMove.x) &&
-                Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMove.z))
+            if (Math.Round(tile.transform.position.x) == Math.Round(attemptedMove.x) &&
+                Math.Round(tile.transform.position.z) == Math.Round(attemptedMove.z))
             {
                 neighbouringTiles.Add(tile);
                 rightTile = tile;
             }
                     
             attemptedMove = transform.position - transform.right * 10;
-            if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMove.x) &&
-                Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMove.z))
+            if (Math.Round(tile.transform.position.x) == Math.Round(attemptedMove.x) &&
+                Math.Round(tile.transform.position.z) == Math.Round(attemptedMove.z))
             {
                 neighbouringTiles.Add(tile);
                 leftTile = tile;
             }
                     
             attemptedMove = transform.position + transform.forward * 10;
-            if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMove.x) &&
-                Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMove.z))
+            if (Math.Round(tile.transform.position.x) == Math.Round(attemptedMove.x) &&
+                Math.Round(tile.transform.position.z) == Math.Round(attemptedMove.z))
             {
                 neighbouringTiles.Add(tile);
                 frontTile = tile;
             }
                     
             attemptedMove = transform.position - transform.forward * 10;
-            if (Math.Floor(tile.transform.position.x) == Math.Floor(attemptedMove.x) &&
-                Math.Floor(tile.transform.position.z) == Math.Floor(attemptedMove.z))
+            if (Math.Round(tile.transform.position.x) == Math.Round(attemptedMove.x) &&
+                Math.Round(tile.transform.position.z) == Math.Round(attemptedMove.z))
             {
                 neighbouringTiles.Add(tile);
                 backTile = tile;

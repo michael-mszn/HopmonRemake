@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Entities.Monster.AI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PassengerManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PassengerManager : MonoBehaviour
     public Passenger bird;
     public Passenger dragon;
     public Passenger spike;
-    public Passenger stalker;
+    public Passenger tornado;
     
     private void Awake()
     {
@@ -64,8 +65,8 @@ public class PassengerManager : MonoBehaviour
     
     public GameObject SetPassengerStalker(GameObject tile)
     {
-        GameObject passenger = Instantiate(stalker.prefab, tile.transform.position, Quaternion.identity);
-        PositionPassengerOnTile(tile, passenger, stalker.yOffset);
+        GameObject passenger = Instantiate(tornado.prefab, tile.transform.position, Quaternion.identity);
+        PositionPassengerOnTile(tile, passenger, tornado.yOffset);
         return passenger;
     }
     

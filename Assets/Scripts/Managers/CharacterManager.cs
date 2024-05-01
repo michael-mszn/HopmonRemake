@@ -38,7 +38,6 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     {
         isInitialized = false;
         playerTileLog = new();
-        SetSpawnPoint();
         lowestSpeedLimit = maximumSpeed * lowestSpeedPercentage;
         currentSpeed = maximumSpeed;
         hp = 2;
@@ -55,17 +54,6 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
             invulnerabilityTimer -= Time.deltaTime;
             DoInvulnerabilityFrameFlickering();
         }
-    }
-
-    /*
-     * Properly centers the playable character on the tile grid
-     */
-    public void SetSpawnPoint()
-    {
-        baseTile = GameObject.FindWithTag("Map").transform.Find("BaseTile").gameObject.GetComponent<Transform>();
-        character.transform.position = new Vector3(baseTile.transform.position.x, baseTile.transform.position.y + 7,
-            baseTile.transform.position.z);
-        character.GetComponent<Movement>().InitDestination();
     }
     
     public void AddCrystal()

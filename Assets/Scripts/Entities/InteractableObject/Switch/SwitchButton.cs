@@ -13,10 +13,6 @@ public class SwitchButton : MonoBehaviour
         
     }
     
-    /*
-     *todo:  Very expensive (O(n) and n times GetComponent calls).
-     * Refactor to use Events
-     */
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Character"))
