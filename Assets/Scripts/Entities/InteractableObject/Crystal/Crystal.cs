@@ -8,7 +8,7 @@ public class Crystal : MonoBehaviour
     public static event Action CrystalSpawn;
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         CrystalSpawn?.Invoke();
     }

@@ -1270,68 +1270,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425020287}
   m_CullTransparentMesh: 1
---- !u!1 &434928841
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 434928843}
-  - component: {fileID: 434928842}
-  m_Layer: 0
-  m_Name: PassengerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &434928842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434928841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4311cebf341b5c44db9b2e35d482fac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crystal:
-    prefab: {fileID: 2331043459988363468, guid: fba3f6cf07f67994aa18e1605fad0d7f, type: 3}
-    yOffset: 8
-  bonusHeart:
-    prefab: {fileID: 637206554817726957, guid: 96af546aba0f89644abe811078b1a372, type: 3}
-    yOffset: 8
-  bird:
-    prefab: {fileID: 7337433806099359148, guid: 85df1d025861a9d448cb4196138460fb, type: 3}
-    yOffset: 8
-  dragon:
-    prefab: {fileID: 4424388663303028382, guid: 7e52f47398a948c4baef32f63b8a65d0, type: 3}
-    yOffset: 8
-  spike:
-    prefab: {fileID: 4853565060855214129, guid: 6a0873d907052c249bd6ca522e2c46af, type: 3}
-    yOffset: 8
-  tornado:
-    prefab: {fileID: 0}
-    yOffset: 0
---- !u!4 &434928843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434928841}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -364.06497, y: -685.2592, z: -2.511713}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1140009106}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &440148915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,7 +1570,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 576646823}
-  - component: {fileID: 576646822}
+  - component: {fileID: 576646824}
+  - component: {fileID: 576646825}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -1640,31 +1579,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &576646822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576646821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e3d956eae307864ab480aa4552e2f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map: {fileID: 231187262}
-  player: {fileID: 1808297680}
-  baseTilePrefab: {fileID: 7002997231758394380, guid: b8225595a7476a24a9c6a1193cacf06c, type: 3}
-  floorTilePrefab: {fileID: 665486517013058024, guid: e4c1f3cf5a4633a4db8c25b5113f12f7, type: 3}
-  bridgeTilePrefab: {fileID: 8802925976605447924, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
-  spikeTilePrefab: {fileID: 536568092780277393, guid: 62569f3a08b135f439a7fb07ff688870, type: 3}
-  switchTilePrefab: {fileID: 1061878438659631371, guid: 3505979b17bdcd9449b06b2d5d019303, type: 3}
-  cyanSwitchTilePrefab: {fileID: 7989568059474938938, guid: baf99d5b857010f41bee319a8372608f, type: 3}
-  orangeSwitchTilePrefab: {fileID: 2355883380468937124, guid: 7f1c98ecb348b3346b5d073c544e4bb0, type: 3}
-  obstacleTilePrefab: {fileID: 2195902352473179594, guid: feff67e11b0caa44496e7670fbe2e7c5, type: 3}
-  onewayTilePrefab: {fileID: 4806085440264854009, guid: 20b463648f593f741a61e33d18976bd3, type: 3}
-  wallTilePrefab: {fileID: 2016829700133237063, guid: 46b0a1cf788a2de4389f8d3cbaffe676, type: 3}
-  largeWallTilePrefab: {fileID: 2510032341038552209, guid: cd80a067580e20e4f85f502e869e6d77, type: 3}
 --- !u!4 &576646823
 Transform:
   m_ObjectHideFlags: 0
@@ -1680,6 +1594,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &576646824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576646821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af92464788241d9acb7a873a3854a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTilePrefab: {fileID: 7002997231758394380, guid: b8225595a7476a24a9c6a1193cacf06c, type: 3}
+  floorTilePrefab: {fileID: 665486517013058024, guid: e4c1f3cf5a4633a4db8c25b5113f12f7, type: 3}
+  bridgeTilePrefab: {fileID: 8802925976605447924, guid: 46db7feb36a031e4ba94b7d1e6ceaa4a, type: 3}
+  spikeTilePrefab: {fileID: 536568092780277393, guid: 62569f3a08b135f439a7fb07ff688870, type: 3}
+  switchTilePrefab: {fileID: 1061878438659631371, guid: 3505979b17bdcd9449b06b2d5d019303, type: 3}
+  cyanSwitchTilePrefab: {fileID: 7989568059474938938, guid: baf99d5b857010f41bee319a8372608f, type: 3}
+  orangeSwitchTilePrefab: {fileID: 2355883380468937124, guid: 7f1c98ecb348b3346b5d073c544e4bb0, type: 3}
+  obstacleTilePrefab: {fileID: 2195902352473179594, guid: feff67e11b0caa44496e7670fbe2e7c5, type: 3}
+  onewayTilePrefab: {fileID: 4806085440264854009, guid: 20b463648f593f741a61e33d18976bd3, type: 3}
+  wallTilePrefab: {fileID: 2016829700133237063, guid: 46b0a1cf788a2de4389f8d3cbaffe676, type: 3}
+  largeWallTilePrefab: {fileID: 2510032341038552209, guid: cd80a067580e20e4f85f502e869e6d77, type: 3}
+  voidPrefab: {fileID: 6760883272149195371, guid: 8e16c7ff63e04864697839240d218c5d, type: 3}
+  crystalPrefab:
+    prefab: {fileID: 2331043459988363468, guid: fba3f6cf07f67994aa18e1605fad0d7f, type: 3}
+    yOffset: 8
+  bonusHeartPrefab:
+    prefab: {fileID: 637206554817726957, guid: 96af546aba0f89644abe811078b1a372, type: 3}
+    yOffset: 8
+  birdPrefab:
+    prefab: {fileID: 7337433806099359148, guid: 85df1d025861a9d448cb4196138460fb, type: 3}
+    yOffset: 8
+  dragonPrefab:
+    prefab: {fileID: 4424388663303028382, guid: 7e52f47398a948c4baef32f63b8a65d0, type: 3}
+    yOffset: 8
+  spikePrefab:
+    prefab: {fileID: 4853565060855214129, guid: 6a0873d907052c249bd6ca522e2c46af, type: 3}
+    yOffset: 8
+  tornadoPrefab:
+    prefab: {fileID: 8386833635635383197, guid: 1e0ffba4ccfb6e240b86bfcaa86f5bb9, type: 3}
+    yOffset: 8
+  noPassengerPrefab:
+    prefab: {fileID: 6760883272149195371, guid: 8e16c7ff63e04864697839240d218c5d, type: 3}
+    yOffset: 8
+--- !u!114 &576646825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576646821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3d956eae307864ab480aa4552e2f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameMap: {fileID: 231187262}
+  player: {fileID: 1808297680}
 --- !u!1 &651330103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,7 +3907,6 @@ Transform:
   - {fileID: 188787340}
   - {fileID: 899735806}
   - {fileID: 651330104}
-  - {fileID: 434928843}
   - {fileID: 1174490552}
   - {fileID: 1974592575}
   m_Father: {fileID: 0}

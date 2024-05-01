@@ -1,108 +1,96 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using LevelGen;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public GameObject map;
+    public GameObject gameMap;
     public GameObject player;
-    public GameObject baseTilePrefab;
-    public GameObject floorTilePrefab;
-    public GameObject bridgeTilePrefab;
-    public GameObject spikeTilePrefab;
-    public GameObject switchTilePrefab;
-    public GameObject cyanSwitchTilePrefab;
-    public GameObject orangeSwitchTilePrefab;
-    public GameObject obstacleTilePrefab;
-    public GameObject onewayTilePrefab;
-    public GameObject wallTilePrefab;
-    public GameObject largeWallTilePrefab;
 
+    private LevelGenDictionary levelGenDictionary;
+
+    private String exampleLevel = "MWALL MWALL MWALL EMPTY EMPTY LWALL LWALL LWALL" + "\n" +
+                                  "BS|BH FL|CR FL|BH FL|BI FL|DR FL|TO FL|NP OB|BH" + "\n" +
+                                  "SW|NP SP|SP SP|NP SP|NP SP|NP SP|NP SP|NP SP|NP" + "\n" +
+                                  "CS|BH CS|BH CS|BH CS|BH OS|BH OS|BH OS|BH OS|BH" + "\n" +
+                                  "BR|CR BR|CR BR|CR BR|CR OW|CR OW|CR OW|CR OW|CR";
+    
     void Awake()
     {
-        GenerateLevel();
+        levelGenDictionary = gameObject.GetComponent<LevelGenDictionary>();
+        levelGenDictionary.InitTileMap();
+        levelGenDictionary.InitPassengerMap();
+        GenerateLevel(exampleLevel);
         SetSpawnPoint();
     }
 
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void OnBeforeSceneLoad()
+    private void GenerateLevel(String level)
     {
-       
+        string[] rows = level.Split("\n");
+        int zCoordinate = 0;
+        foreach (string row in rows)
+        {
+            GenerateRow(row, zCoordinate);
+            zCoordinate -= 10;
+        }
+    }
+
+    private void GenerateRow(string row, int zCoordinate)
+    {
+        string[] tiles = row.Split(" ");
+        int xCoordinate = 0;
+        foreach (string tile in tiles)
+        {
+            string[] tileItems = tile.Split("|");
+            GameObject tileGameObject = null;
+            foreach(var entry in levelGenDictionary.GetTileMap())
+            {
+                if (string.Equals(tileItems[0], entry.Value.Item1))
+                {
+                    tileGameObject = Instantiate(entry.Value.Item2, new Vector3(xCoordinate, 0, zCoordinate), Quaternion.identity);
+                    tileGameObject.transform.parent = gameMap.transform;
+                }
+            }
+
+            if (tileItems.Length == 2)
+            {
+                foreach (var entry in levelGenDictionary.GetPassengerMap())
+                {
+                    if (string.Equals(tileItems[1], entry.Value.Item1))
+                    {
+                        GameObject passengerGameObject = SetPassenger(tileGameObject, entry.Value.Item2);
+                        passengerGameObject.transform.parent = gameMap.transform;
+                    }
+                }
+            }
+            xCoordinate += 10;
+        }
     }
     
-
-    private void GenerateLevel()
+    private GameObject SetPassenger(GameObject tile, Passenger passenger)
     {
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(0, 0, i);
-            GameObject tile = Instantiate(floorTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(-10, 4, i);
-            GameObject tile = Instantiate(wallTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(-20, 8, i);
-            GameObject tile = Instantiate(largeWallTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(i, 0, 0);
-            GameObject tile = Instantiate(onewayTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(i, 0, 50);
-            GameObject tile = Instantiate(bridgeTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(50, 0, i);
-            GameObject tile = Instantiate(spikeTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(20, 0, i);
-            GameObject tile = Instantiate(cyanSwitchTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-        
-        for(int i = 10; i <= 100; i += 10)
-        {
-            Vector3 coordinate = new Vector3(30, 0, i);
-            GameObject tile = Instantiate(orangeSwitchTilePrefab, coordinate, Quaternion.identity);
-            tile.transform.parent = map.transform;
-        }
-
-        Instantiate(switchTilePrefab, new Vector3(10, 0, 20), Quaternion.identity);
-        Instantiate(obstacleTilePrefab, new Vector3(10, 0, 10), Quaternion.identity);
+        GameObject p = Instantiate(passenger.prefab, tile.transform.position, passenger.prefab.gameObject
+            .transform.rotation);
+        PositionPassengerOnTile(tile, p, passenger.GetOffset());
+        return p;
     }
     
+    /*
+     *  Aligns the passenger on the tile-grid
+     */
+    private void PositionPassengerOnTile(GameObject tile, GameObject passenger, int yOffset)
+    {
+        passenger.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + yOffset,
+            tile.transform.position.z); 
+    }
+        
     /*
      * Properly centers the playable character on the tile grid
      */
     private void SetSpawnPoint()
     {
-        GameObject baseTile = Instantiate(baseTilePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        baseTile.transform.parent = map.transform;
+        GameObject baseTile = gameMap.transform.Find("BaseTile(Clone)").gameObject;
         player.transform.position = new Vector3(baseTile.transform.position.x,
             baseTile.transform.position.y + 7,
             baseTile.transform.position.z);
