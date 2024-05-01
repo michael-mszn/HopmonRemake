@@ -50,6 +50,10 @@ public class TrackPlayerPathing : AI
         }
     }
 
+    /*
+     * Changes behaviour to follow the player once it randomly stepped on a tile that is
+     * on the player tile log
+     */
     protected override void DetermineNeighbourTiles()
     {
         Vector3 monsterPosition = new Vector3((float) Math.Floor(transform.position.x),
@@ -72,10 +76,5 @@ public class TrackPlayerPathing : AI
         
         playerTileLogIndex++;
         isCurrentlyMoving = true;
-    }
-
-    public bool HasFoundPlayer()
-    {
-        return hasFoundPlayer;
     }
 }

@@ -13,36 +13,6 @@ namespace Entities.Monster.AI.FixedPathing
         
         private List<GameObject> pathTileList = new();
 
-        public override void Move()
-        {
-            if (!gameObject.tag.Equals("Falling"))
-            {
-                if (!isCurrentlyMoving)
-                {
-                    DetermineNeighbourTiles();
-                    if (neighbouringTiles.Any())
-                    {
-                        DetermineDestination();
-                    }
-                }
-                else
-                {
-                    if (transform.position != destination)
-                    {
-                        Step();
-                    }
-                    else
-                    {
-                        isCurrentlyMoving = false;
-                    }
-                }
-            }
-            else
-            {
-                StartFalling();
-            }
-        }
-
         protected override void DetermineNeighbourTiles()
         {
             neighbouringTiles.Clear();

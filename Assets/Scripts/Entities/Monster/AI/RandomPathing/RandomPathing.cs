@@ -7,36 +7,6 @@ using UnityEngine;
 
 public class RandomPathing : AI
 {
-
-    public override void Move()
-    {
-        if (!gameObject.tag.Equals("Falling"))
-        {
-            if (!isCurrentlyMoving)
-            {
-                DetermineNeighbourTiles();
-                if (neighbouringTiles.Any())
-                {
-                    DetermineDestination();
-                }
-            }
-            else
-            {
-                if (transform.position != destination)
-                {
-                    Step();
-                }
-                else
-                {
-                    isCurrentlyMoving = false;
-                }
-            }
-        }
-        else
-        {
-            StartFalling();
-        }
-    }
     
     /*
      * Only tiles in a plus-shape around the monster are considered neighbours
