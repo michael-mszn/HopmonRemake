@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace LevelGen
 {
+    /*
+     * The level generator reads from this class to determine for which acronym which
+     * prefab should be generated. Passengers and Tiles are managed in separate dictionaries.
+     *
+     * TILE acronyms do NOT need to be distinct from PASSENGER acronyms, however
+     * TILE acronyms have to be distinct from other TILE acronyms (and Passengers for passengers)
+     */
     public class LevelGenDictionary : MonoBehaviour
     {
         [Header("Tiles")]
@@ -23,16 +30,16 @@ namespace LevelGen
         [Header("Passengers")]
         public Passenger crystalPrefab;
         public Passenger bonusHeartPrefab;
-        public Passenger birdPrefab;
         public Passenger dragonPrefab;
+        public Passenger cookieMonsterPrefab;
         public Passenger spikePrefab;
         public Passenger tornadoPrefab;
         public Passenger noPassengerPrefab;
 
         
-        protected Dictionary<int, Tuple<string, GameObject>> tileMap = new();
+        private Dictionary<int, Tuple<string, GameObject>> tileMap = new();
 
-        protected Dictionary<int, Tuple<string, Passenger>> passengerMap = new();
+        private Dictionary<int, Tuple<string, Passenger>> passengerMap = new();
 
         public void InitTileMap()
         {
@@ -54,8 +61,8 @@ namespace LevelGen
         {
             passengerMap.Add(0, new Tuple<string, Passenger>("CR", crystalPrefab));
             passengerMap.Add(1, new Tuple<string, Passenger>("BH", bonusHeartPrefab));
-            passengerMap.Add(2, new Tuple<string, Passenger>("BI", birdPrefab));
-            passengerMap.Add(3, new Tuple<string, Passenger>("DR", dragonPrefab));
+            passengerMap.Add(2, new Tuple<string, Passenger>("DR", dragonPrefab));
+            passengerMap.Add(3, new Tuple<string, Passenger>("CM", cookieMonsterPrefab));
             passengerMap.Add(4, new Tuple<string, Passenger>("SP", spikePrefab));
             passengerMap.Add(5, new Tuple<string, Passenger>("TO", tornadoPrefab));
             passengerMap.Add(6, new Tuple<string, Passenger>("NP", noPassengerPrefab));

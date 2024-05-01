@@ -1624,12 +1624,12 @@ MonoBehaviour:
   bonusHeartPrefab:
     prefab: {fileID: 637206554817726957, guid: 96af546aba0f89644abe811078b1a372, type: 3}
     yOffset: 8
-  birdPrefab:
-    prefab: {fileID: 7337433806099359148, guid: 85df1d025861a9d448cb4196138460fb, type: 3}
-    yOffset: 8
   dragonPrefab:
     prefab: {fileID: 4424388663303028382, guid: 7e52f47398a948c4baef32f63b8a65d0, type: 3}
     yOffset: 8
+  cookieMonsterPrefab:
+    prefab: {fileID: 2472595956195277441, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+    yOffset: 9
   spikePrefab:
     prefab: {fileID: 4853565060855214129, guid: 6a0873d907052c249bd6ca522e2c46af, type: 3}
     yOffset: 8
@@ -4872,8 +4872,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280558628
+  m_fontColor: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5073,8 +5073,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280558628
+  m_fontColor: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6236,8 +6236,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280558628
+  m_fontColor: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6920,8 +6920,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280558628
+  m_fontColor: {r: 0.13962269, g: 0.13962269, b: 0.13962269, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7307,6 +7307,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6996995156523078608, guid: 2ddfb7b444363b8419b5944557b8f686, type: 3}
+      propertyPath: maximumTravelDistance
+      value: 350
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7512,6 +7516,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baf99d5b857010f41bee319a8372608f, type: 3}
+--- !u!1001 &7428266217872143689
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2472595956195277441, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_Name
+      value: CookieMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978451275104033337, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfc447c22e945a5439ac5a5e12a8f28c, type: 3}
 --- !u!1001 &7903364196279923606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7641,3 +7702,4 @@ SceneRoots:
   - {fileID: 1140009106}
   - {fileID: 576646823}
   - {fileID: 231187263}
+  - {fileID: 7428266217872143689}

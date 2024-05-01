@@ -11,8 +11,8 @@ public class LevelGenerator : MonoBehaviour
     private LevelGenDictionary levelGenDictionary;
 
     private String exampleLevel = "MWALL MWALL MWALL EMPTY EMPTY LWALL LWALL LWALL" + "\n" +
-                                  "BS|BH FL|CR FL|BH FL|BI FL|DR FL|TO FL|NP OB|BH" + "\n" +
-                                  "SW|NP SP|SP SP|NP SP|NP SP|NP SP|NP SP|NP SP|NP" + "\n" +
+                                  "BS|BH FL|CR FL|BH FL|DR FL|CM FL|TO FL|NP OB|BH" + "\n" +
+                                  "SW|NP SP|SP SP|CM SP|CM SP|NP SP|NP SP|NP SP|NP" + "\n" +
                                   "CS|BH CS|BH CS|BH CS|BH OS|BH OS|BH OS|BH OS|BH" + "\n" +
                                   "BR|CR BR|CR BR|CR BR|CR OW|CR OW|CR OW|CR OW|CR";
     
@@ -36,6 +36,9 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    /*
+     * Responsible for generating all tiles + passenger of an individual row (z-axis)
+     */
     private void GenerateRow(string row, int zCoordinate)
     {
         string[] tiles = row.Split(" ");
@@ -48,7 +51,8 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (string.Equals(tileItems[0], entry.Value.Item1))
                 {
-                    tileGameObject = Instantiate(entry.Value.Item2, new Vector3(xCoordinate, 0, zCoordinate), Quaternion.identity);
+                    tileGameObject = Instantiate(entry.Value.Item2, new Vector3(xCoordinate, entry.Value.Item2.gameObject.transform.position.y, 
+                        zCoordinate), Quaternion.identity);
                     tileGameObject.transform.parent = gameMap.transform;
                 }
             }
