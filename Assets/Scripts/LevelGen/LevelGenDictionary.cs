@@ -9,7 +9,7 @@ namespace LevelGen
      * prefab should be generated. Passengers and Tiles are managed in separate dictionaries.
      *
      * TILE acronyms do NOT need to be distinct from PASSENGER acronyms, however
-     * TILE acronyms have to be distinct from other TILE acronyms (and Passengers for passengers)
+     * TILE acronyms have to be distinct from other TILE acronyms (and PASSENGERS for PASSENGERS)
      */
     public class LevelGenDictionary : MonoBehaviour
     {
@@ -54,7 +54,7 @@ namespace LevelGen
             tileMap.Add(8, new Tuple<string, GameObject>("OW", onewayTilePrefab));
             tileMap.Add(9, new Tuple<string, GameObject>("MWALL", wallTilePrefab));
             tileMap.Add(10, new Tuple<string, GameObject>("LWALL", largeWallTilePrefab));
-            tileMap.Add(11, new Tuple<string, GameObject>("EMPTY", voidPrefab));
+            tileMap.Add(11, new Tuple<string, GameObject>("-----", voidPrefab));
         }
 
         public void InitPassengerMap()

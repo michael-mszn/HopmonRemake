@@ -68,8 +68,11 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
 
     public void IncreaseHP()
     {
-        hp += 1;
-        UIManager.Instance.UpdateHpText();
+        if (hp != 9)
+        {
+            hp += 1;
+            UIManager.Instance.UpdateHpText();
+        }
     }
 
     public void SecureCrystal()

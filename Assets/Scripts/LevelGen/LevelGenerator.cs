@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using LevelGen;
 using UnityEngine;
 
@@ -9,19 +10,18 @@ public class LevelGenerator : MonoBehaviour
     public GameObject player;
 
     private LevelGenDictionary levelGenDictionary;
-
-    private String exampleLevel = "MWALL MWALL MWALL EMPTY EMPTY LWALL LWALL LWALL" + "\n" +
-                                  "BS|BH FL|CR FL|BH FL|DR FL|CM FL|TO FL|NP OB|BH" + "\n" +
-                                  "SW|NP SP|SP SP|CM SP|CM SP|NP SP|NP SP|NP SP|NP" + "\n" +
-                                  "CS|BH CS|BH CS|BH CS|BH OS|BH OS|BH OS|BH OS|BH" + "\n" +
-                                  "BR|CR BR|CR BR|CR BR|CR OW|CR OW|CR OW|CR OW|CR";
     
+    /*
+     * The Level Generator operates in a single scene. It loads the .txt file with the corresponding
+     * level number that gets set by the SceneHandler.
+     */
     void Awake()
     {
+        string level = File.ReadAllText(Application.streamingAssetsPath + "/Levels/" + "Level" + SceneHandler.selectedLevel + ".txt");
         levelGenDictionary = gameObject.GetComponent<LevelGenDictionary>();
         levelGenDictionary.InitTileMap();
         levelGenDictionary.InitPassengerMap();
-        GenerateLevel(exampleLevel);
+        GenerateLevel(level);
         SetSpawnPoint();
     }
 
@@ -49,9 +49,10 @@ public class LevelGenerator : MonoBehaviour
             GameObject tileGameObject = null;
             foreach(var entry in levelGenDictionary.GetTileMap())
             {
-                if (string.Equals(tileItems[0], entry.Value.Item1))
+                if (string.Equals(tileItems[0], entry.Value.Item1) && !string.Equals(tileItems[0], "EMPTY")) 
                 {
-                    tileGameObject = Instantiate(entry.Value.Item2, new Vector3(xCoordinate, entry.Value.Item2.gameObject.transform.position.y, 
+                    tileGameObject = Instantiate(entry.Value.Item2, new Vector3(xCoordinate, 
+                        entry.Value.Item2.gameObject.transform.position.y,
                         zCoordinate), Quaternion.identity);
                     tileGameObject.transform.parent = gameMap.transform;
                 }
@@ -61,7 +62,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 foreach (var entry in levelGenDictionary.GetPassengerMap())
                 {
-                    if (string.Equals(tileItems[1], entry.Value.Item1))
+                    if (string.Equals(tileItems[1], entry.Value.Item1) && !string.Equals(tileItems[0], "NP"))
                     {
                         GameObject passengerGameObject = SetPassenger(tileGameObject, entry.Value.Item2);
                         passengerGameObject.transform.parent = gameMap.transform;

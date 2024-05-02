@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI crystalProgressText;
     public TextMeshProUGUI crystalCarriedText;
     public TextMeshProUGUI fireCooldownText;
+    public TextMeshProUGUI levelText;
     public GameObject gameOverScreen;
     public GameObject energyBar;
     public Color unloadedColor;
@@ -78,6 +79,11 @@ public class UIManager : MonoBehaviour
             "" + (LevelManager.Instance.GetCrystalsInLevel() - LevelManager.Instance.GetCrystalsLeft()) + "/" +
             LevelManager.Instance.GetCrystalsInLevel();
     }
+    
+    public void UpdateLevelText()
+    {
+        levelText.text = "LEVEL " + SceneHandler.selectedLevel;
+    }
 
     public void UpdateFireCooldownText(float cooldown)
     {
@@ -102,6 +108,7 @@ public class UIManager : MonoBehaviour
         UpdateHpText();
         UpdateCrystalCarriedText();
         UpdateCrystalsLeftText();
+        UpdateLevelText();
         UpdateFireCooldownText(0);
     }
     
