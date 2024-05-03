@@ -96,18 +96,18 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
     private void SaveProgress()
     {
         character.SetActive(false);
-        LevelData solvedLevel = SceneHandler.levelData.FirstOrDefault(ld => string.Equals(""+ld.GetLevelNumber(), SceneHandler.selectedLevel));
+        LevelData solvedLevel = MainMenu.levelData.FirstOrDefault(ld => string.Equals(""+ld.GetLevelNumber(), MainMenu.selectedLevel));
         if (solvedLevel != null)
         {
             solvedLevel.SetHasSolved(true);
         }
 
-        if (SceneHandler.highestLevelUnlocked <= SceneHandler.levelData.Count)
+        if (MainMenu.highestLevelUnlocked <= MainMenu.levelData.Count)
         {
-            PersistPlayerData.SaveProgress(SceneHandler.levelData, Int32.Parse(SceneHandler.selectedLevel)+1);
+            PersistPlayerData.SaveProgress(MainMenu.levelData, Int32.Parse(MainMenu.selectedLevel)+1);
         }
 
-        SceneHandler.selectedLevel = ""+(Int32.Parse(SceneHandler.selectedLevel)+1);
+        MainMenu.selectedLevel = ""+(Int32.Parse(MainMenu.selectedLevel)+1);
         UIManager.Instance.ShowLevelCleared();
     }
     

@@ -17,7 +17,7 @@ public class LevelGenerator : MonoBehaviour
      */
     void Awake()
     {
-        string level = File.ReadAllText(Application.streamingAssetsPath + "/Levels/" + "Level" + SceneHandler.selectedLevel + ".txt");
+        string level = File.ReadAllText(Application.streamingAssetsPath + "/Levels/" + "Level" + MainMenu.selectedLevel + ".txt");
         levelGenDictionary = gameObject.GetComponent<LevelGenDictionary>();
         levelGenDictionary.InitTileMap();
         levelGenDictionary.InitPassengerMap();

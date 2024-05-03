@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
     
     public void UpdateLevelText()
     {
-        levelText.text = "LEVEL " + SceneHandler.selectedLevel;
+        levelText.text = "LEVEL " + MainMenu.selectedLevel;
     }
 
     public void UpdateFireCooldownText(float cooldown)
@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
     public void ShowLevelCleared()
     {
         levelClearedScreen.SetActive(true);
-        if (Int32.Parse(SceneHandler.selectedLevel) > SceneHandler.levelData.Count)
+        if (Int32.Parse(MainMenu.selectedLevel) > MainMenu.levelData.Count)
         {
             nextLevelButton.SetActive(false);
         }
