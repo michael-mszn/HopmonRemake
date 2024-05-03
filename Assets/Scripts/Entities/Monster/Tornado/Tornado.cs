@@ -48,6 +48,7 @@ namespace Entities.Monster.Tornado
             {
                 UIManager.Instance.ShowGameOver();
                 gameObject.SetActive(false);
+                entity.gameObject.SetActive(false);
             }
         }
         

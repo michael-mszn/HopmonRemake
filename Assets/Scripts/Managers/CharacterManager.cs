@@ -95,12 +95,18 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
 
     private void SaveProgress()
     {
+        character.SetActive(false);
         LevelData solvedLevel = SceneHandler.levelData.FirstOrDefault(ld => string.Equals(""+ld.GetLevelNumber(), SceneHandler.selectedLevel));
         if (solvedLevel != null)
         {
             solvedLevel.SetHasSolved(true);
         }
-        PersistPlayerData.SaveProgress(SceneHandler.levelData, Int32.Parse(SceneHandler.selectedLevel)+1);
+
+        if (SceneHandler.highestLevelUnlocked <= SceneHandler.levelData.Count)
+        {
+            PersistPlayerData.SaveProgress(SceneHandler.levelData, Int32.Parse(SceneHandler.selectedLevel)+1);
+        }
+
         SceneHandler.selectedLevel = ""+(Int32.Parse(SceneHandler.selectedLevel)+1);
         UIManager.Instance.ShowLevelCleared();
     }
@@ -131,6 +137,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
                 if (hp <= 0)
                 {
                     hp = 0;
+                    character.SetActive(false);
                     UIManager.Instance.UpdateHpText();
                     UIManager.Instance.ShowGameOver();
                 }

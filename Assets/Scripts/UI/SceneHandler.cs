@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
- * This file is too big and needs to be separated into multiple files (SceneHandler + GameManager + MainMenu)
+ * Todo: This file is too big and needs to be separated into multiple files (SceneHandler + GameManager + MainMenu)
  */
 public class SceneHandler : MonoBehaviour
 {
@@ -44,40 +44,26 @@ public class SceneHandler : MonoBehaviour
             playerData = PersistPlayerData.LoadPlayer();
             if (playerData is null)
             {
-                levelData = new();
-                InitLevelData();
-                PersistPlayerData.SaveProgress(levelData, highestLevelUnlocked);
-                playerData = PersistPlayerData.LoadPlayer();
-            }
-            foreach (var level in playerData.levelData)
-            {
-                print("Level: " + level.GetLevelNumber() + "Solved: " + level.GetHasSolved());
+                InitPlayerProfile();
             }
             levelData = playerData.GetLevelData();
             highestLevelUnlocked = playerData.GetHighestLevelUnlocked();
-            //GetHighestSolvedLevel();
             GenerateLevelUIElements();
         }
-    }
-
-    private void GetHighestSolvedLevel()
-    {
-        highestLevelUnlocked = levelData.FindIndex(ld => ld.GetHasSolved() == false);
-        if (highestLevelUnlocked == -1) 
-        { 
-            highestLevelUnlocked = levelData.Count + 1;
-        }
-        else
-        {
-            highestLevelUnlocked += 1;
-            //highestLevelUnlocked = levelData[highestLevelUnlocked].GetLevelNumber();
-        }
-        print(highestLevelUnlocked);
     }
     
     public void LoadLevel()
     {
         SceneManager.LoadScene("LevelScene");
+    }
+
+    private void InitPlayerProfile()
+    {               
+        levelData = new();
+        InitLevelData();
+        PersistPlayerData.SaveProgress(levelData, highestLevelUnlocked);
+        playerData = PersistPlayerData.LoadPlayer();
+        
     }
     
     private void InitLevelData()
@@ -95,14 +81,12 @@ public class SceneHandler : MonoBehaviour
     {
         levelSelectScreen.SetActive(false);
         mainMenuScreen.SetActive(true);
-        print(highestLevelUnlocked);
     }
     
     public void GetLevelSelection()
     {
         mainMenuScreen.SetActive(false);
         levelSelectScreen.SetActive(true);
-        print(highestLevelUnlocked);
     }
 
     public void RestartLevel()
