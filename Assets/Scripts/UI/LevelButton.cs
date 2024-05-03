@@ -14,7 +14,10 @@ namespace UI
         {
             levelNumber = levelText.text;
             SceneHandler.selectedLevel = levelNumber;
-            gameObject.AddComponent<SceneHandler>().LoadLevel();
+            if (Int32.Parse(SceneHandler.selectedLevel) <= SceneHandler.highestLevelUnlocked)
+            {
+                gameObject.AddComponent<SceneHandler>().LoadLevel();
+            }
         }
 
         public void SetLevelText(string s)

@@ -15,7 +15,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI fireCooldownText;
     public TextMeshProUGUI levelText;
     public GameObject gameOverScreen;
+    public GameObject levelClearedScreen;
     public GameObject energyBar;
+    public GameObject nextLevelButton;
     public Color unloadedColor;
     public Color loadedColor;
     public static UIManager Instance;
@@ -101,6 +103,15 @@ public class UIManager : MonoBehaviour
     {
         PauseMenu.isPaused = true;
         gameOverScreen.SetActive(true);
+    }
+
+    public void ShowLevelCleared()
+    {
+        levelClearedScreen.SetActive(true);
+        if (Int32.Parse(SceneHandler.selectedLevel) > SceneHandler.levelData.Count)
+        {
+            nextLevelButton.SetActive(false);
+        }
     }
     
     public void InitializeUI()

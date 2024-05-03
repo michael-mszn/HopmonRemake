@@ -2,23 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Persistence;
+using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * This file is too big and needs to be separated into multiple files (SceneHandler + GameManager + MainMenu)
+ */
 public class SceneHandler : MonoBehaviour
 {
     public static string selectedLevel;
+    public static List<LevelData> levelData;
+    public static int highestLevelUnlocked;
+    private PlayerData playerData;
 
     public GameObject levelSelectScreen;
-
     public GameObject mainMenuScreen;
-
     public GameObject levelButtonPrefab;
-
     public GameObject leftPageArrow;
     public GameObject rightPageArrow;
-    
     
     private string[] allFiles;
     private List<GameObject> levelButtonsList;
@@ -35,27 +39,70 @@ public class SceneHandler : MonoBehaviour
             CountLevels();
             DeterminePageCount();
             currentPage = 0;
-            GenerateLevelUIElements();
             UpdatePageIcons();
             GetMainMenu();
+            playerData = PersistPlayerData.LoadPlayer();
+            if (playerData is null)
+            {
+                levelData = new();
+                InitLevelData();
+                PersistPlayerData.SaveProgress(levelData, highestLevelUnlocked);
+                playerData = PersistPlayerData.LoadPlayer();
+            }
+            foreach (var level in playerData.levelData)
+            {
+                print("Level: " + level.GetLevelNumber() + "Solved: " + level.GetHasSolved());
+            }
+            levelData = playerData.GetLevelData();
+            highestLevelUnlocked = playerData.GetHighestLevelUnlocked();
+            //GetHighestSolvedLevel();
+            GenerateLevelUIElements();
         }
+    }
+
+    private void GetHighestSolvedLevel()
+    {
+        highestLevelUnlocked = levelData.FindIndex(ld => ld.GetHasSolved() == false);
+        if (highestLevelUnlocked == -1) 
+        { 
+            highestLevelUnlocked = levelData.Count + 1;
+        }
+        else
+        {
+            highestLevelUnlocked += 1;
+            //highestLevelUnlocked = levelData[highestLevelUnlocked].GetLevelNumber();
+        }
+        print(highestLevelUnlocked);
+    }
+    
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene("LevelScene");
+    }
+    
+    private void InitLevelData()
+    {
+        for(int i = 1; i <= levelCount; i++)
+        {
+            LevelData ld = new LevelData(i, false);
+            levelData.Add(ld);
+        }
+
+        highestLevelUnlocked = 1;
     }
     
     public void GetMainMenu()
     {
         levelSelectScreen.SetActive(false);
         mainMenuScreen.SetActive(true);
+        print(highestLevelUnlocked);
     }
     
     public void GetLevelSelection()
     {
         mainMenuScreen.SetActive(false);
         levelSelectScreen.SetActive(true);
-    }
-
-    public void LoadLevel()
-    {
-        SceneManager.LoadScene("LevelScene");
+        print(highestLevelUnlocked);
     }
 
     public void RestartLevel()
@@ -92,6 +139,15 @@ public class SceneHandler : MonoBehaviour
                 {
                     xPosition = -730;
                     yPosition -= 200;
+                }
+
+                if (i < highestLevelUnlocked)
+                {
+                    button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
+                }
+                else if (i == highestLevelUnlocked)
+                {
+                    button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
                 }
 
                 button.transform.SetParent(levelSelectScreen.transform, false);

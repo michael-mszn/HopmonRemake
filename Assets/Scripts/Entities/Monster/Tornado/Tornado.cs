@@ -46,7 +46,7 @@ namespace Entities.Monster.Tornado
         
             if (entity.gameObject.tag.Equals("Character"))
             {
-                //UIManager.Instance.ShowGameOver();
+                UIManager.Instance.ShowGameOver();
                 gameObject.SetActive(false);
             }
         }

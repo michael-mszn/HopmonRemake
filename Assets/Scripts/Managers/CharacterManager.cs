@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Persistence;
 using Setup;
 using UnityEngine;
 
@@ -87,9 +89,20 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         currentSpeed = maximumSpeed;
         if (LevelManager.Instance.GetCrystalsLeft() == 0)
         {
-            //TODO: Proper transition to next level
-            print("Level solved!");
+            SaveProgress();
         }
+    }
+
+    private void SaveProgress()
+    {
+        LevelData solvedLevel = SceneHandler.levelData.FirstOrDefault(ld => string.Equals(""+ld.GetLevelNumber(), SceneHandler.selectedLevel));
+        if (solvedLevel != null)
+        {
+            solvedLevel.SetHasSolved(true);
+        }
+        PersistPlayerData.SaveProgress(SceneHandler.levelData, Int32.Parse(SceneHandler.selectedLevel)+1);
+        SceneHandler.selectedLevel = ""+(Int32.Parse(SceneHandler.selectedLevel)+1);
+        UIManager.Instance.ShowLevelCleared();
     }
     
     public float GetCurrentSpeed()
