@@ -26,7 +26,7 @@ public class SceneHandler : MonoBehaviour
     
     private string[] allFiles;
     private List<GameObject> levelButtonsList;
-    private float levelCount;
+    private int levelCount;
     private int pages;
     private int currentPage;
     
@@ -42,9 +42,25 @@ public class SceneHandler : MonoBehaviour
             UpdatePageIcons();
             GetMainMenu();
             playerData = PersistPlayerData.LoadPlayer();
+            
+            /*
+             * If playerdata.hop has not been created and initialized yet
+             */
             if (playerData is null)
             {
-                InitPlayerProfile();
+                playerData = InitPlayerProfile();
+            }
+            
+            /*
+             * If a developer or player added new levels in StreamableAssets
+             */
+            else if (playerData.GetLevelData().Count < levelCount)
+            {
+                for (int i = levelCount - playerData.GetLevelData().Count; i > 0; i--)
+                {
+                    playerData.GetLevelData().Add(new LevelData(playerData.GetLevelData().Count+i, false));
+                }
+                PersistPlayerData.SaveProgress(playerData.GetLevelData(), playerData.GetHighestLevelUnlocked());
             }
             levelData = playerData.GetLevelData();
             highestLevelUnlocked = playerData.GetHighestLevelUnlocked();
@@ -57,13 +73,14 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("LevelScene");
     }
 
-    private void InitPlayerProfile()
+    private PlayerData InitPlayerProfile()
     {               
         levelData = new();
         InitLevelData();
         PersistPlayerData.SaveProgress(levelData, highestLevelUnlocked);
-        playerData = PersistPlayerData.LoadPlayer();
-        
+        PlayerData pd = PersistPlayerData.LoadPlayer();
+        return pd;
+
     }
     
     private void InitLevelData()
@@ -183,7 +200,7 @@ public class SceneHandler : MonoBehaviour
      */
     private void DeterminePageCount()
     {
-        pages = (int) Math.Floor(levelCount / 24);
+        pages = (int) Math.Floor((float)levelCount / 24);
         pages = levelCount % 24 == 0 ? pages -= 1 : pages;   
     }
 }
