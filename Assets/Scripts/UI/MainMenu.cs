@@ -149,6 +149,9 @@ public class MainMenu : MonoBehaviour
         UpdatePageIcons();
     }
 
+    /*
+     * When player clicks to load a new page
+     */
     private void UpdatePageIcons()
     {
         if (currentPage != 0)
