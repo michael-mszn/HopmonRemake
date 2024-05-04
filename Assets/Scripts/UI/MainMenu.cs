@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Persistence;
+using Setup;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -13,15 +14,14 @@ public class MainMenu : MonoBehaviour
     public GameObject levelButtonPrefab;
     public GameObject leftPageArrow;
     public GameObject rightPageArrow;
-    
-    private List<GameObject> levelButtonsList;
+
+    private ObjectPool levelUIElementPool;
     private int pages;
     private int currentPage;
-
         
     void Start() 
     { 
-        levelButtonsList = new();
+        levelUIElementPool = new ObjectPool(levelButtonPrefab, 30);
         DeterminePageCount();
         currentPage = 0;
         UpdatePageIcons();
@@ -44,33 +44,38 @@ public class MainMenu : MonoBehaviour
     private void GenerateLevelUIElements()
     {
         ResetLevelUIElements();
-        float xPosition = -730;
-        float yPosition = -280;
+        float xStartPosition = 225;
+        float yStartPosition = 785;
+        float xPosition = xStartPosition;
+        float yPosition = yStartPosition;
         for (int i = currentPage*24+1; i <= currentPage*24+24; i++)
         {
             if (i <= GameManager.Instance.levelCount)
             {
-                GameObject button = Instantiate(levelButtonPrefab, new Vector3(xPosition, yPosition, 0),
-                    Quaternion.identity);
-                button.gameObject.GetComponent<LevelButton>().SetLevelText("" + i);
+                GameObject button = levelUIElementPool.GetPoolItem();
+                button.transform.SetParent(levelSelectScreen.transform, false);
+                Vector3 screenPosition = new Vector3(xPosition, yPosition, 0);
+                button.transform.position = screenPosition;
+                button.GetComponent<LevelButton>().SetLevelText("" + i);
                 xPosition += 200;
-                if (xPosition >= 800)
+                if (xPosition >= 1755)
                 {
-                    xPosition = -730;
+                    xPosition = xStartPosition;
                     yPosition -= 200;
                 }
 
                 if (i < GameManager.highestLevelUnlocked)
                 {
-                    button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
+                    button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color32(88, 70, 245, 255);
                 }
                 else if (i == GameManager.highestLevelUnlocked)
                 {
                     button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
                 }
-
-                button.transform.SetParent(levelSelectScreen.transform, false);
-                levelButtonsList.Add(button);
+                else
+                {
+                    button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
+                }
             }
         }
     }
@@ -102,15 +107,12 @@ public class MainMenu : MonoBehaviour
             rightPageArrow.SetActive(true);
         else rightPageArrow.SetActive(false);
     }
-
-    /*
-     * Todo: Not performant, use object pooling
-     */
+    
     private void ResetLevelUIElements()
     {
-        foreach (var UIElement in levelButtonsList)
+        foreach (var UIElement in levelUIElementPool.GetPool())
         {
-            Destroy(UIElement);
+            UIElement.SetActive(false);
         }
     }
 
@@ -124,5 +126,4 @@ public class MainMenu : MonoBehaviour
         pages = (int) Math.Floor((float)GameManager.Instance.levelCount / 24);
         pages = GameManager.Instance.levelCount % 24 == 0 ? pages -= 1 : pages;
     }
-        
 }
