@@ -4268,6 +4268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1140009106}
+  - component: {fileID: 1140009107}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4296,6 +4297,22 @@ Transform:
   - {fileID: 1974592575}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1140009107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140009104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ac5011811d7e44ca58eb3cbcce12e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedLevel: 
+  levelData: []
+  highestLevelUnlocked: 0
+  player: {fileID: 1808297680}
 --- !u!1 &1174490551
 GameObject:
   m_ObjectHideFlags: 0

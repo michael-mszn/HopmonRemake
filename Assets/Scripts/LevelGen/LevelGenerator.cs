@@ -13,11 +13,11 @@ public class LevelGenerator : MonoBehaviour
     
     /*
      * The Level Generator operates in a single scene. It loads the .txt file with the corresponding
-     * level number that gets set by the SceneHandler.
+     * level number that gets set by the MainMenu.
      */
     void Awake()
     {
-        string level = File.ReadAllText(Application.streamingAssetsPath + "/Levels/" + "Level" + MainMenu.selectedLevel + ".txt");
+        string level = File.ReadAllText(Application.streamingAssetsPath + "/Levels/" + "Level" + GameManager.selectedLevel + ".txt");
         levelGenDictionary = gameObject.GetComponent<LevelGenDictionary>();
         levelGenDictionary.InitTileMap();
         levelGenDictionary.InitPassengerMap();
@@ -49,7 +49,7 @@ public class LevelGenerator : MonoBehaviour
             GameObject tileGameObject = null;
             foreach(var entry in levelGenDictionary.GetTileMap())
             {
-                if (string.Equals(tileItems[0], entry.Value.Item1) && !string.Equals(tileItems[0], "EMPTY")) 
+                if (string.Equals(tileItems[0], entry.Value.Item1) && !string.Equals(tileItems[0], "-----")) 
                 {
                     tileGameObject = Instantiate(entry.Value.Item2, new Vector3(xCoordinate, 
                         entry.Value.Item2.gameObject.transform.position.y,

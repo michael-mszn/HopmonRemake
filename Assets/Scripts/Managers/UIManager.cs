@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
     
     public void UpdateLevelText()
     {
-        levelText.text = "LEVEL " + MainMenu.selectedLevel;
+        levelText.text = "LEVEL " + GameManager.selectedLevel;
     }
 
     public void UpdateFireCooldownText(float cooldown)
@@ -101,14 +101,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowGameOver()
     {
-        PauseMenu.isPaused = true;
+        GameManager.isPaused = true;
         gameOverScreen.SetActive(true);
     }
 
     public void ShowLevelCleared()
     {
         levelClearedScreen.SetActive(true);
-        if (Int32.Parse(MainMenu.selectedLevel) > MainMenu.levelData.Count)
+        if (Int32.Parse(GameManager.selectedLevel) > GameManager.levelData.Count)
         {
             nextLevelButton.SetActive(false);
         }

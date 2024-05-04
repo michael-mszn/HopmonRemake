@@ -13,9 +13,10 @@ namespace UI
         public void SelectLevel()
         {
             levelNumber = levelText.text;
-            MainMenu.selectedLevel = levelNumber;
-            if (Int32.Parse(MainMenu.selectedLevel) <= MainMenu.highestLevelUnlocked)
+            GameManager.selectedLevel = levelNumber;
+            if (Int32.Parse(GameManager.selectedLevel) <= GameManager.highestLevelUnlocked)
             {
+                print("Selected level" + GameManager.selectedLevel);
                 gameObject.AddComponent<SceneHandler>().LoadLevel();
             }
         }

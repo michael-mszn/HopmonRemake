@@ -38,7 +38,7 @@ public class Movement : Controls
          * Tile based movement. Valid Movement Check is done by scanning all tile coordinates.
          * Not using collision detection or wall objects ensures ease of use in level design and better scalability
          */
-        if (GetIsStandingStill() && !isCameraRotating && !PauseMenu.isPaused)
+        if (GetIsStandingStill() && !isCameraRotating && !GameManager.isPaused)
         {
             if (Input.GetKey(forwardKeyCode))
             {

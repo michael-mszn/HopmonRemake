@@ -29,7 +29,7 @@ public class RotateCamera : MonoBehaviour
             return;
         }
         
-        if (!isCameraRotating && !PauseMenu.isPaused)
+        if (!isCameraRotating && !GameManager.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {

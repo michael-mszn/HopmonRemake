@@ -89,26 +89,8 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
         currentSpeed = maximumSpeed;
         if (LevelManager.Instance.GetCrystalsLeft() == 0)
         {
-            SaveProgress();
+            GameManager.Instance.SaveProgress();
         }
-    }
-
-    private void SaveProgress()
-    {
-        character.SetActive(false);
-        LevelData solvedLevel = MainMenu.levelData.FirstOrDefault(ld => string.Equals(""+ld.GetLevelNumber(), MainMenu.selectedLevel));
-        if (solvedLevel != null)
-        {
-            solvedLevel.SetHasSolved(true);
-        }
-
-        if (MainMenu.highestLevelUnlocked <= MainMenu.levelData.Count)
-        {
-            PersistPlayerData.SaveProgress(MainMenu.levelData, Int32.Parse(MainMenu.selectedLevel)+1);
-        }
-
-        MainMenu.selectedLevel = ""+(Int32.Parse(MainMenu.selectedLevel)+1);
-        UIManager.Instance.ShowLevelCleared();
     }
     
     public float GetCurrentSpeed()
@@ -128,7 +110,7 @@ public class CharacterManager : MonoBehaviour, IInitializedFlag
 
     public void TakeDamage(int damage)
     {
-        if (!PauseMenu.isPaused)
+        if (!GameManager.isPaused)
         {
             if (invulnerabilityTimer <= 0)
             {

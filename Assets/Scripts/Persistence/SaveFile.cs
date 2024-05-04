@@ -10,7 +10,7 @@ namespace Persistence
     /*
      * Make the class static so only one single save file can always exist
      */
-    public static class PersistPlayerData
+    public static class SaveFile
     {
         private static string savePath = Application.persistentDataPath + "/playerdata.hop";
         

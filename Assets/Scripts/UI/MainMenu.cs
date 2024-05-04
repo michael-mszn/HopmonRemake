@@ -6,24 +6,15 @@ using TMPro;
 using UI;
 using UnityEngine;
 
-
-//todo: Refactor some game flow logic into a game manager
 public class MainMenu : MonoBehaviour
 {
-    public static string selectedLevel;
-    public static List<LevelData> levelData;
-    public static int highestLevelUnlocked;
-    private PlayerData playerData;
-
     public GameObject levelSelectScreen;
     public GameObject mainMenuScreen;
     public GameObject levelButtonPrefab;
     public GameObject leftPageArrow;
     public GameObject rightPageArrow;
     
-    private string[] allFiles;
     private List<GameObject> levelButtonsList;
-    private int levelCount;
     private int pages;
     private int currentPage;
 
@@ -31,56 +22,11 @@ public class MainMenu : MonoBehaviour
     void Start() 
     { 
         levelButtonsList = new();
-        CountLevels();
         DeterminePageCount();
         currentPage = 0;
         UpdatePageIcons();
         ShowMainMenu();
-        playerData = PersistPlayerData.LoadPlayer();
-                
-        /*
-         * If playerdata.hop has not been created and initialized yet
-         */
-        if (playerData is null)
-        {
-            playerData = InitPlayerProfile();
-        }
-                
-        /*
-        * If a developer or player added new levels in StreamableAssets
-        */
-        else if (playerData.GetLevelData().Count < levelCount)
-        {
-            for (int i = levelCount - playerData.GetLevelData().Count; i > 0; i--)
-            {
-                playerData.GetLevelData().Add(new LevelData(playerData.GetLevelData().Count+i, false));
-            }
-            PersistPlayerData.SaveProgress(playerData.GetLevelData(), playerData.GetHighestLevelUnlocked());
-        }
-        levelData = playerData.GetLevelData();
-        highestLevelUnlocked = playerData.GetHighestLevelUnlocked();
         GenerateLevelUIElements();
-    }
-    
-    private PlayerData InitPlayerProfile()
-    {               
-        levelData = new();
-        InitLevelData();
-        PersistPlayerData.SaveProgress(levelData, highestLevelUnlocked);
-        PlayerData pd = PersistPlayerData.LoadPlayer();
-        return pd;
-
-    }
-    
-    private void InitLevelData()
-    {
-        for(int i = 1; i <= levelCount; i++)
-        {
-            LevelData ld = new LevelData(i, false);
-            levelData.Add(ld);
-        }
-
-        highestLevelUnlocked = 1;
     }
     
     public void ShowMainMenu()
@@ -94,12 +40,6 @@ public class MainMenu : MonoBehaviour
         mainMenuScreen.SetActive(false);
         levelSelectScreen.SetActive(true);
     }
-    
-       private void CountLevels()
-    {
-        allFiles = Directory.GetFiles(Application.streamingAssetsPath + "/Levels/", "Level*.txt", SearchOption.AllDirectories);
-        levelCount = allFiles.Length;
-    }
 
     private void GenerateLevelUIElements()
     {
@@ -108,7 +48,7 @@ public class MainMenu : MonoBehaviour
         float yPosition = -280;
         for (int i = currentPage*24+1; i <= currentPage*24+24; i++)
         {
-            if (i <= levelCount)
+            if (i <= GameManager.Instance.levelCount)
             {
                 GameObject button = Instantiate(levelButtonPrefab, new Vector3(xPosition, yPosition, 0),
                     Quaternion.identity);
@@ -120,11 +60,11 @@ public class MainMenu : MonoBehaviour
                     yPosition -= 200;
                 }
 
-                if (i < highestLevelUnlocked)
+                if (i < GameManager.highestLevelUnlocked)
                 {
                     button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
                 }
-                else if (i == highestLevelUnlocked)
+                else if (i == GameManager.highestLevelUnlocked)
                 {
                     button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
                 }
@@ -181,8 +121,8 @@ public class MainMenu : MonoBehaviour
      */
     private void DeterminePageCount()
     {
-        pages = (int) Math.Floor((float)levelCount / 24);
-        pages = levelCount % 24 == 0 ? pages -= 1 : pages;
+        pages = (int) Math.Floor((float)GameManager.Instance.levelCount / 24);
+        pages = GameManager.Instance.levelCount % 24 == 0 ? pages -= 1 : pages;
     }
         
 }
