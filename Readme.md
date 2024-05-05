@@ -1,9 +1,11 @@
-# Hopmon Reimagined 
+ ![HopmonReimaginedAlphaLogo](https://github.com/michael-mszn/HopmonRemake/assets/74096536/7ac841a7-a54b-4ed1-8770-4cd50f229405)
+
+# Hopmon Reimagined
+
 A remake in the C# Unity engine of the original game "Hopmon", made by Saito Games in 2002. 
 Hopmon Reimagined is a Single Player 3D Action Puzzle Game that requires creativity and strategy to solve levels.
 
 ![image](https://github.com/michael-mszn/HopmonRemake/assets/74096536/17c456fd-e003-4b92-96e0-48a8d86828f5)
-
 
 **This game is still actively in development.**
 
@@ -35,9 +37,12 @@ Hopmon Reimagined allows you to create your own levels over a plug-and-play text
 
 4. Open your new file. You can start replacing the empty tiles now to your likings. Refer to the following legend:
 
+   ![LevelEditorCheatSheet](https://github.com/michael-mszn/HopmonRemake/assets/74096536/7fd9bf32-15fc-42bb-80c7-b5438260d8e3)
+
    
 
-5. Each tile can host an optional passenger. Declare it after making a `|` straight line.
+6. Each tile can host an optional passenger. Declare a Passenger suffix after making a `|` straight line.
+   
    For example, you want a Floor Tile with a Cookie Monster on it. The declarion for this would be `FL|CM`.
 
 # Requirements
