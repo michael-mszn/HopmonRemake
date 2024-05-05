@@ -45,6 +45,9 @@ Hopmon Reimagined allows you to create your own levels over a plug-and-play text
    
    For example, you want a Floor Tile with a Cookie Monster on it. The declarion for this would be `FL|CM`.
 
+7. Head ingame to check out your newly created level. Do not worry about making mistakes! Hopmon Reimagined will replace
+   invalid codes with an empty `-----` tile.
+
 # Requirements
 
 - Unity Hub
