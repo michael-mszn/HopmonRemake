@@ -13,13 +13,13 @@ Hopmon Reimagined is a Single Player 3D Action Puzzle Game that requires creativ
 
 - Find all crystals hidden in the level and return them to your base.
 
-- Defeat dangerous monsters with an Energy Ball by pressing R or tools in the levels. Once your health reach 0, it is Game Over and the level needs to be restarted.
+- Defeat dangerous monsters with an energy ball by pressing R or tools in the levels. Once your health reach 0, it is Game Over and the level needs to be restarted.
 
 - The more crystals you carry, the slower you will walk. Be mindful when it is time to return to base!
 
 - Currently, there are 2 playable levels.
 
-- Rotate the camera with Q to the left, or E to the right. Sometimes a different perspecive can bring many answers!
+- Rotate the camera with Q to the left, or E to the right. Sometimes a different perspecive can be insightful!
 
 - Can't figure out the solution? Simply return later! Hopmon Reimagined saves all your progress.
 
