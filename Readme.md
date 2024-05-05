@@ -21,7 +21,22 @@ Hopmon Reimagined is a Single Player 3D Action Puzzle Game that requires creativ
 
 # Create your own Levels
 
-Todo
+Hopmon Reimagined allows you to create your own levels over a plug-and-play text file and share it with your friends.
+
+**No programming knowledge required!**
+
+1. Head to the Directory of the Game and follow this file path: `\HopmonRemake_Data\StreamingAssets\Levels`
+
+2. Locate the file named `TEMPLATE` and make a copy of it.
+
+3. Rename your copy to `Level[levelnumber]` Do not add the brackets.
+
+4. Open your new file. You can start replacing the empty tiles now to your likings. Refer to the following legend:
+
+   
+
+5. Each tile can host an optional passenger. Declare it after making a `|` straight line.
+   For example, you want a Floor Tile with a Cookie Monster on it. The declarion for this would be `FL|CM`.
 
 # Requirements
 
