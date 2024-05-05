@@ -43,9 +43,14 @@ Hopmon Reimagined allows you to create your own levels over a plug-and-play text
 
 6. Each tile can host an optional passenger. Declare a Passenger suffix after making a `|` straight line.
    
-   For example, you want a Floor Tile with a Cookie Monster on it. The declarion for this would be `FL|CM`.
+   For example, you want a Floor Tile with a Cookie Monster on it. The declaration for this would be `FL|CM`.
 
-7. Head ingame to check out your newly created level. Do not worry about making mistakes! Hopmon Reimagined will replace
+   An example level can look like this:
+   
+   ![image](https://github.com/michael-mszn/HopmonRemake/assets/74096536/5eae5f0b-ccfc-47d1-b42d-aa8a83757699)
+
+
+8. Head ingame to check out your newly created level. Do not worry about making mistakes! Hopmon Reimagined will replace
    invalid codes with an empty `-----` tile.
 
 # Requirements
