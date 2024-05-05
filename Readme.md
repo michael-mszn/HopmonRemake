@@ -11,7 +11,7 @@ Hopmon Reimagined is a Single Player 3D Action Puzzle Game that requires creativ
 
 - Find all crystals hidden in the level and return them to your base.
 
-- Defeat dangerous monsters by using Energy Ball ability or tools in the levels. Once your health reach 0, it is Game Over and the level needs to be restarted.
+- Defeat dangerous monsters with an Energy Ball by pressing R or tools in the levels. Once your health reach 0, it is Game Over and the level needs to be restarted.
 
 - The more crystals you carry, the slower you will walk. Be mindful when it is time to return to base!
 
@@ -27,7 +27,7 @@ Hopmon Reimagined allows you to create your own levels over a plug-and-play text
 
 **No programming knowledge required!**
 
-1. Head to the Directory of the Game and follow this file path: `\HopmonRemake_Data\StreamingAssets\Levels`
+1. Head to the directory of the game's executable and follow this file path: `\HopmonRemake_Data\StreamingAssets\Levels`
 
 2. Locate the file named `TEMPLATE` and make a copy of it.
 
