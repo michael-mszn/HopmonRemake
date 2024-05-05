@@ -27,7 +27,7 @@ Todo
 
 - Unity Hub
   
-- Unity Editor (atleast 2022.1.20f1)
+- Unity Editor (recommended version: 2022.3.24f1)
 
 # How To Run
 
