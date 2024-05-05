@@ -19,9 +19,11 @@ Hopmon Reimagined is a Single Player 3D Action Puzzle Game that requires creativ
 
 - Rotate the camera with Q to the left, or E to the right. Sometimes a different perspecive can bring many answers!
 
+- Can't figure out the solution? Simply return later! Hopmon Reimagined saves all your progress.
+
 # Create your own Levels
 
-Hopmon Reimagined allows you to create your own levels over a plug-and-play text file and share it with your friends.
+Hopmon Reimagined allows you to create your own levels over a plug-and-play text file and share them with your friends.
 
 **No programming knowledge required!**
 
