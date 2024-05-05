@@ -62,7 +62,7 @@ Hopmon Reimagined allows you to create your own levels over a plug-and-play text
 
 # How To Build An Executable 
 
--Clone the repository on your computer
+- Clone the repository on your computer
 
 - Open the project in Unity Hub
 
