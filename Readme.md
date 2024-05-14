@@ -59,15 +59,11 @@ Hopmon Reimagined allows you to create your own levels over a plug-and-play text
   
 - Unity Editor (recommended version: 2022.3.24f1)
 
-# How To Run
-
-- Import the Project into Unity Hub (**Projects > Add**)
-
-- Open the game over Unity Hub and click the Play button
-
-# How To Build An Executable 
+# How To Build An Executable and Run
 
 - Clone the repository on your computer
+
+- Import the project into Unity Hub (**Projects > Add**)
 
 - Open the project in Unity Hub
 
