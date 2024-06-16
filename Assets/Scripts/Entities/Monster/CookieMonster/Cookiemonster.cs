@@ -117,9 +117,9 @@ public class Cookiemonster : Monster
     private void ChangeColor()
     {
         //transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", hurtTexture);
-        MeshRenderer meshRenderer  = transform.GetChild(0).gameObject.GetComponent<MeshRenderer>();
-        meshRenderer.material.SetColor("_Color", hurtMaterial.color);
-        SkinnedMeshRenderer skinnedMeshRenderer = transform.GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>();
-        skinnedMeshRenderer.material.SetColor("_Color", hurtMaterial.color);
+        SkinnedMeshRenderer smr1 = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>();
+        smr1.material.SetColor("_Color", hurtMaterial.color);
+        SkinnedMeshRenderer smr2 = transform.GetChild(1).gameObject.GetComponent<SkinnedMeshRenderer>();
+        smr2.material.SetColor("_Color", hurtMaterial.color);
     }
 }

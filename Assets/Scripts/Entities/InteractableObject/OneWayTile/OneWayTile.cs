@@ -52,8 +52,12 @@ public class OneWayTile : MonoBehaviour
     private void BecomeWall()
     {
         upperBlock.transform.position = Vector3.MoveTowards(upperBlock.transform.position, fallPosition,  fallSpeed * Time.deltaTime);
-        //Smooth Collapse Animation
-        fallSpeed *= 0.9955f;
+        
+        /*
+         * todo: Does not work on low end devices. Needs a fix
+         */
+            //Smooth Collapse Animation
+            //fallSpeed *= 0.9955f;
     }
 
     private void ChangeColor(GameObject block)
